@@ -1,0 +1,809 @@
+{
+  "result": {
+    "number": 0,
+    "provider": "clock",
+    "name": "scheduled_event",
+    "as": "05f381e1",
+    "keyword": "trigger",
+    "dynamicPickListSelection": {
+      "time_unit": "Weeks",
+      "timezone": "America/New_York (-05:00)",
+      "days_of_week": [
+        {
+          "label": "Monday",
+          "value": "1"
+        }
+      ]
+    },
+    "input": {
+      "time_unit": "weeks",
+      "trigger_every": "1",
+      "trigger_at": "03:00:00",
+      "timezone": "America/New_York",
+      "days_of_week": "1"
+    },
+    "extended_input_schema": [
+      {
+        "control_type": "integer",
+        "default": "5",
+        "enforce_template_mode": true,
+        "extends_schema": true,
+        "hint": "Define repeating schedule. Enter whole numbers only.\n                        This field can be set to a minimum of 5 minutes.",
+        "label": "Trigger every",
+        "name": "trigger_every",
+        "optional": false,
+        "suffix": {
+          "text": "weeks"
+        },
+        "type": "string"
+      },
+      {
+        "control_type": "multiselect",
+        "delimiter": ",",
+        "extends_schema": true,
+        "hint": "Select the days on which your schedule should repeat.",
+        "label": "Days of the week",
+        "name": "days_of_week",
+        "optional": false,
+        "pick_list": "days_of_week",
+        "type": "string"
+      },
+      {
+        "control_type": "time",
+        "enforce_template_mode": true,
+        "extends_schema": true,
+        "hint": "Set a time to schedule the job.",
+        "label": "Trigger at",
+        "name": "trigger_at",
+        "optional": false,
+        "type": "string"
+      },
+      {
+        "control_type": "date_time",
+        "enforce_template_mode": true,
+        "extends_schema": true,
+        "hint": "Set date and time to start or leave blank to start immediately. <b>Once recipe has been run or tested, value cannot be changed.</b>",
+        "label": "Start after",
+        "name": "start_after",
+        "optional": true,
+        "parse_output": "date_time_conversion",
+        "since_field": true,
+        "type": "date_time",
+        "render_input": "date_time_conversion"
+      },
+      {
+        "control_type": "select",
+        "hint": "Select the timezone to use. Leave it blank to use <b>{{authUser.timezone}}</b>",
+        "label": "Timezone",
+        "name": "timezone",
+        "optional": true,
+        "pick_list": "timezone_id_global_pick_list",
+        "pick_list_connection_less": true,
+        "type": "string"
+      }
+    ],
+    "visible_config_fields": [
+      "time_unit",
+      "trigger_every",
+      "trigger_at",
+      "timezone"
+    ],
+    "block": [
+      {
+        "number": 1,
+        "provider": "lookup_table",
+        "name": "truncate",
+        "as": "e86f1908",
+        "keyword": "action",
+        "dynamicPickListSelection": {
+          "lookup_table_id": "PROD_AccountHealth_BigQuery"
+        },
+        "input": {
+          "lookup_table_id": "3105124"
+        },
+        "comment": "Delete all the record from the LU Table to insert new records",
+        "uuid": "01eae44a-c19f-447f-bbe2-f1e3eba77b75",
+        "skip": false,
+        "title": null,
+        "description": "Truncate <span class=\"provider\">all entries</span> from <span class=\"provider\">PROD_AccountHealth_BigQuery</span> lookup table"
+      },
+      {
+        "number": 2,
+        "provider": "workato_variable",
+        "name": "declare_variable",
+        "as": "c59d3db1",
+        "keyword": "action",
+        "input": {
+          "variables": {
+            "schema": [
+              {
+                "control_type": "integer",
+                "label": "record_added",
+                "parse_output": "integer_conversion",
+                "name": "record_added",
+                "type": "integer",
+                "optional": true
+              },
+              {
+                "control_type": "integer",
+                "label": "record_skipped",
+                "parse_output": "integer_conversion",
+                "name": "record_skipped",
+                "type": "integer",
+                "optional": true
+              }
+            ],
+            "data": {
+              "record_skipped": "0",
+              "record_added": "0"
+            }
+          }
+        },
+        "extended_output_schema": [
+          {
+            "control_type": "integer",
+            "label": "record_added",
+            "name": "record_added",
+            "optional": true,
+            "parse_output": "integer_conversion",
+            "type": "integer"
+          },
+          {
+            "control_type": "integer",
+            "label": "record_skipped",
+            "name": "record_skipped",
+            "optional": true,
+            "parse_output": "integer_conversion",
+            "type": "integer"
+          }
+        ],
+        "extended_input_schema": [
+          {
+            "add_field_label": "Add a variable",
+            "control_type": "form-schema-builder",
+            "empty_schema_title": "Add variables by giving them a name, type and default value",
+            "exclude_fields": [
+              "hint"
+            ],
+            "item_label": "variable",
+            "label": "Variables",
+            "mark_as_required": true,
+            "name": "variables",
+            "ngIf": "!input.name",
+            "optional": true,
+            "properties": [
+              {
+                "control_type": "text",
+                "label": "Schema",
+                "extends_schema": true,
+                "broadcast_change_event": true,
+                "type": "string",
+                "name": "schema"
+              },
+              {
+                "properties": [
+                  {
+                    "control_type": "integer",
+                    "label": "record_added",
+                    "parse_output": "integer_conversion",
+                    "name": "record_added",
+                    "type": "integer",
+                    "optional": true,
+                    "hint": "Defaults to nil if not supplied.",
+                    "sticky": true
+                  },
+                  {
+                    "control_type": "integer",
+                    "label": "record_skipped",
+                    "parse_output": "integer_conversion",
+                    "name": "record_skipped",
+                    "type": "integer",
+                    "optional": true,
+                    "hint": "Defaults to nil if not supplied.",
+                    "sticky": true
+                  }
+                ],
+                "label": "Data",
+                "type": "object",
+                "name": "data"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "visible_config_fields": [
+          "variables.data.record_count",
+          "variables",
+          "variables.schema",
+          "variables.data",
+          "variables.data.record_added",
+          "variables.data.record_skipped"
+        ],
+        "uuid": "c56da3c3-a169-4d49-9024-13654d70cad0",
+        "title": "  Create variables record_added, record_skipped",
+        "description": "Create variables <span class=\"provider\">record_added</span>, <span class=\"provider\">record_skipped</span>"
+      },
+      {
+        "number": 3,
+        "keyword": "try",
+        "input": {},
+        "block": [
+          {
+            "number": 4,
+            "provider": "google_big_query",
+            "name": "search_rows_using_custom_sql_sync",
+            "as": "71eef477",
+            "keyword": "action",
+            "dynamicPickListSelection": {
+              "project_id": "labster-dwh"
+            },
+            "toggleCfg": {
+              "wait_for_query": true,
+              "project_id": true
+            },
+            "input": {
+              "project_id": "labster-dwh",
+              "query": "with chs as (\n  SELECT\n  account_id,\n  score_health_overall, \n  row_number() over (partition by account_id order by calendar_date desc) rn\nFROM bi.health_score_dashboard) \nselect * except (rn) from chs where rn=1",
+              "output_schema": [
+                {
+                  "name": "account_id",
+                  "type": "string",
+                  "optional": false,
+                  "label": "Account ID",
+                  "control_type": "text"
+                },
+                {
+                  "name": "score_health_overall",
+                  "type": "string",
+                  "optional": false,
+                  "label": "Health Score",
+                  "control_type": "text"
+                }
+              ],
+              "wait_for_query": "true"
+            },
+            "extended_output_schema": [
+              {
+                "control_type": "checkbox",
+                "label": "Output contains rows?",
+                "name": "has_results",
+                "parse_output": {},
+                "toggle_field": {
+                  "label": "Output contains rows?",
+                  "control_type": "text",
+                  "toggle_hint": "Use custom value",
+                  "type": "boolean",
+                  "name": "has_results"
+                },
+                "toggle_hint": "Select from option list",
+                "type": "boolean",
+                "render_input": {}
+              },
+              {
+                "label": "Rows",
+                "name": "rows",
+                "of": "object",
+                "properties": [
+                  {
+                    "control_type": "text",
+                    "label": "Account ID",
+                    "optional": true,
+                    "type": "string",
+                    "name": "account_id"
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "Score health overall",
+                    "optional": true,
+                    "type": "string",
+                    "name": "score_health_overall"
+                  }
+                ],
+                "type": "array"
+              },
+              {
+                "control_type": "text",
+                "label": "Kind",
+                "name": "kind",
+                "type": "string"
+              },
+              {
+                "label": "Job reference",
+                "name": "jobReference",
+                "properties": [
+                  {
+                    "control_type": "text",
+                    "label": "Project ID",
+                    "type": "string",
+                    "name": "projectId"
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "Job ID",
+                    "type": "string",
+                    "name": "jobId"
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "Location",
+                    "type": "string",
+                    "name": "location"
+                  }
+                ],
+                "type": "object"
+              },
+              {
+                "control_type": "text",
+                "label": "Total rows",
+                "name": "totalRows",
+                "type": "string"
+              },
+              {
+                "control_type": "text",
+                "label": "Page token",
+                "name": "pageToken",
+                "type": "string"
+              },
+              {
+                "label": "Schema",
+                "name": "schema",
+                "properties": [
+                  {
+                    "name": "fields",
+                    "type": "array",
+                    "of": "object",
+                    "label": "Fields",
+                    "properties": [
+                      {
+                        "control_type": "text",
+                        "label": "Name",
+                        "type": "string",
+                        "name": "name"
+                      },
+                      {
+                        "control_type": "text",
+                        "label": "Type",
+                        "type": "string",
+                        "name": "type"
+                      },
+                      {
+                        "control_type": "text",
+                        "label": "Mode",
+                        "type": "string",
+                        "name": "mode"
+                      }
+                    ]
+                  }
+                ],
+                "type": "object"
+              },
+              {
+                "control_type": "text",
+                "label": "Etag",
+                "name": "etag",
+                "type": "string"
+              },
+              {
+                "control_type": "text",
+                "label": "Total bytes processed",
+                "name": "totalBytesProcessed",
+                "type": "string"
+              },
+              {
+                "control_type": "checkbox",
+                "label": "Job complete",
+                "name": "jobComplete",
+                "parse_output": {},
+                "toggle_field": {
+                  "label": "Job complete",
+                  "control_type": "text",
+                  "toggle_hint": "Use custom value",
+                  "type": "boolean",
+                  "name": "jobComplete"
+                },
+                "toggle_hint": "Select from option list",
+                "type": "boolean",
+                "render_input": {}
+              },
+              {
+                "control_type": "checkbox",
+                "label": "Cache hit",
+                "name": "cacheHit",
+                "parse_output": {},
+                "toggle_field": {
+                  "label": "Cache hit",
+                  "control_type": "text",
+                  "toggle_hint": "Use custom value",
+                  "type": "boolean",
+                  "name": "cacheHit"
+                },
+                "toggle_hint": "Select from option list",
+                "type": "boolean",
+                "render_input": {}
+              }
+            ],
+            "extended_input_schema": [
+              {
+                "control_type": "form-schema-builder",
+                "hint": "First provide the full name assigned to your bind variable in the WHERE condition. e.g. <b>id</b>\n                    Second, provide the actual parameter value. Parameter values can be static or datapills.\n                    Select the <b>closest corresponding data type</b> that your database is expecting for the bind variable\n                    ",
+                "label": "Parameters",
+                "name": "parameters",
+                "optional": true,
+                "override": true,
+                "properties": [
+                  {
+                    "control_type": "text",
+                    "label": "Schema",
+                    "extends_schema": true,
+                    "type": "string",
+                    "name": "schema"
+                  },
+                  {
+                    "properties": [],
+                    "label": "Data",
+                    "optional": true,
+                    "type": "object",
+                    "name": "data"
+                  }
+                ],
+                "sticky": true,
+                "type": "object"
+              }
+            ],
+            "uuid": "162e3e25-0523-42ca-ba33-b3d8b4a56cd0",
+            "title": null,
+            "description": null
+          },
+          {
+            "number": 5,
+            "as": "fc21376a",
+            "keyword": "foreach",
+            "repeat_mode": "simple",
+            "clear_scope": "false",
+            "input": {},
+            "block": [
+              {
+                "number": 6,
+                "keyword": "if",
+                "input": {
+                  "type": "compound",
+                  "operand": "and",
+                  "conditions": [
+                    {
+                      "operand": "present",
+                      "lhs": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"foreach\",\"line\":\"fc21376a\",\"path\":[\"account_id\"]}')}",
+                      "rhs": "",
+                      "uuid": "condition-72082bbe-2126-46dd-abc4-4cae20955c62"
+                    },
+                    {
+                      "operand": "present",
+                      "lhs": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"foreach\",\"line\":\"fc21376a\",\"path\":[\"score_health_overall\"]}')}",
+                      "rhs": "",
+                      "uuid": "condition-af01cb2b-0702-4f78-aa2d-3eb3a878c9fc"
+                    }
+                  ]
+                },
+                "block": [
+                  {
+                    "number": 7,
+                    "provider": "lookup_table",
+                    "name": "add_entry",
+                    "as": "71451725",
+                    "keyword": "action",
+                    "dynamicPickListSelection": {
+                      "lookup_table_id": "PROD_AccountHealth_BigQuery"
+                    },
+                    "input": {
+                      "lookup_table_id": "3105124",
+                      "parameters": {
+                        "col1": "{\"account_id\": \"#{_dp('{\"pill_type\":\"output\",\"provider\":\"foreach\",\"line\":\"fc21376a\",\"path\":[\"account_id\"]}')}\",\"score_health_overall\":\"#{_dp('{\"pill_type\":\"output\",\"provider\":\"foreach\",\"line\":\"fc21376a\",\"path\":[\"score_health_overall\"]}')}\"}",
+                        "col2": "false",
+                        "col3": "fetched from BiqQuery",
+                        "col5": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"foreach\",\"line\":\"fc21376a\",\"path\":[\"account_id\"]}')}"
+                      }
+                    },
+                    "extended_output_schema": [
+                      {
+                        "control_type": "number",
+                        "label": "Entry ID",
+                        "name": "id",
+                        "parse_output": "integer_conversion",
+                        "type": "integer"
+                      },
+                      {
+                        "label": "Entry",
+                        "name": "entry",
+                        "properties": [
+                          {
+                            "control_type": "text",
+                            "label": "Records",
+                            "name": "col1",
+                            "type": "string",
+                            "sticky": true
+                          },
+                          {
+                            "control_type": "text",
+                            "label": "Processed?",
+                            "name": "col2",
+                            "type": "string",
+                            "sticky": true
+                          },
+                          {
+                            "control_type": "text",
+                            "label": "Status",
+                            "name": "col3",
+                            "type": "string",
+                            "sticky": true
+                          },
+                          {
+                            "control_type": "text",
+                            "label": "Message",
+                            "name": "col4",
+                            "type": "string",
+                            "sticky": true
+                          },
+                          {
+                            "control_type": "text",
+                            "label": "AccountId_key",
+                            "name": "col5",
+                            "type": "string",
+                            "sticky": true
+                          }
+                        ],
+                        "type": "object"
+                      }
+                    ],
+                    "extended_input_schema": [
+                      {
+                        "hint": "Fill the fields for the new entry",
+                        "label": "Entry fields",
+                        "name": "parameters",
+                        "properties": [
+                          {
+                            "control_type": "text",
+                            "label": "Records",
+                            "name": "col1",
+                            "type": "string",
+                            "sticky": true,
+                            "optional": true
+                          },
+                          {
+                            "control_type": "text",
+                            "label": "Processed?",
+                            "name": "col2",
+                            "type": "string",
+                            "sticky": true,
+                            "optional": true
+                          },
+                          {
+                            "control_type": "text",
+                            "label": "Status",
+                            "name": "col3",
+                            "type": "string",
+                            "sticky": true,
+                            "optional": true
+                          },
+                          {
+                            "control_type": "text",
+                            "label": "Message",
+                            "name": "col4",
+                            "type": "string",
+                            "sticky": true,
+                            "optional": true
+                          },
+                          {
+                            "control_type": "text",
+                            "label": "AccountId_key",
+                            "name": "col5",
+                            "type": "string",
+                            "sticky": true,
+                            "optional": true
+                          }
+                        ],
+                        "type": "object"
+                      }
+                    ],
+                    "visible_config_fields": [
+                      "lookup_table_id",
+                      "parameters",
+                      "parameters.col1",
+                      "parameters.col2",
+                      "parameters.col4",
+                      "parameters.col5",
+                      "parameters.col3"
+                    ],
+                    "uuid": "047bc053-38cb-4123-947e-30a88a644908",
+                    "skip": false,
+                    "title": null,
+                    "description": "Add <span class=\"provider\">an entry</span> to <span class=\"provider\">PROD_AccountHealth_BigQuery</span> lookup table"
+                  },
+                  {
+                    "number": 8,
+                    "provider": "workato_variable",
+                    "name": "update_variables",
+                    "as": "0220d98f",
+                    "keyword": "action",
+                    "dynamicPickListSelection": {
+                      "name": [
+                        {
+                          "label": "record_added (step 3)",
+                          "value": "c56da3c3-a169-4d49-9024-13654d70cad0:c59d3db1:record_added"
+                        }
+                      ]
+                    },
+                    "input": {
+                      "name": "c56da3c3-a169-4d49-9024-13654d70cad0:c59d3db1:record_added",
+                      "record_added": "=_dp('{\"pill_type\":\"output\",\"provider\":\"workato_variable\",\"line\":\"c59d3db1\",\"path\":[\"record_added\"]}').to_i + 1"
+                    },
+                    "extended_input_schema": [
+                      {
+                        "control_type": "integer",
+                        "hint": "Provide a value for the variable. When the value is not supplied, the variable is not updated.<br>To clear the value, set the value to <b>nil</b> in formula mode.",
+                        "label": "record_added",
+                        "name": "record_added",
+                        "optional": true,
+                        "parse_output": "integer_conversion",
+                        "sticky": true,
+                        "type": "integer",
+                        "strip_interpolation": true
+                      }
+                    ],
+                    "uuid": "9a5cb112-6f9a-45a1-9a98-578c32485409",
+                    "title": null,
+                    "description": "Update variables <span class=\"provider\">record_added</span>"
+                  },
+                  {
+                    "number": 9,
+                    "keyword": "else",
+                    "input": {},
+                    "block": [
+                      {
+                        "number": 10,
+                        "provider": "workato_variable",
+                        "name": "update_variables",
+                        "as": "f038a290",
+                        "keyword": "action",
+                        "dynamicPickListSelection": {
+                          "name": [
+                            {
+                              "label": "record_skipped (step 3)",
+                              "value": "c56da3c3-a169-4d49-9024-13654d70cad0:c59d3db1:record_skipped"
+                            }
+                          ]
+                        },
+                        "input": {
+                          "name": "c56da3c3-a169-4d49-9024-13654d70cad0:c59d3db1:record_skipped",
+                          "record_skipped": "=_dp('{\"pill_type\":\"output\",\"provider\":\"workato_variable\",\"line\":\"c59d3db1\",\"path\":[\"record_skipped\"]}').to_i + 1"
+                        },
+                        "extended_input_schema": [
+                          {
+                            "control_type": "integer",
+                            "hint": "Provide a value for the variable. When the value is not supplied, the variable is not updated.<br>To clear the value, set the value to <b>nil</b> in formula mode.",
+                            "label": "record_skipped",
+                            "name": "record_skipped",
+                            "optional": true,
+                            "parse_output": "integer_conversion",
+                            "sticky": true,
+                            "type": "integer",
+                            "strip_interpolation": true
+                          }
+                        ],
+                        "uuid": "67c9faea-7fe1-4621-99f6-789302c2d91f",
+                        "title": null,
+                        "description": "Update variables <span class=\"provider\">record_skipped</span>"
+                      }
+                    ],
+                    "uuid": "60bac31e-dfa5-4b9b-a020-e047712db857"
+                  }
+                ],
+                "uuid": "7a9da029-114b-4b29-b3d6-4618cd3fbe46"
+              }
+            ],
+            "source": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"google_big_query\",\"line\":\"71eef477\",\"path\":[\"rows\"]}')}",
+            "uuid": "4e835852-afb9-49f7-8184-5a78645f722a"
+          },
+          {
+            "number": 11,
+            "provider": "workato_recipe_function",
+            "name": "call_recipe_async",
+            "as": "73f921f1",
+            "mask_data": false,
+            "keyword": "action",
+            "dynamicPickListSelection": {
+              "flow_id": "N8N Test: Callable - Sync BQ account health score to SF account object Child"
+            },
+            "input": {
+              "flow_id": "82296085"
+            },
+            "uuid": "22b60be9-b190-446f-a405-1506ca9ace32",
+            "skip": false,
+            "title": null,
+            "description": "Call <span class=\"provider\">N8N Test: Callable - Sync BQ account health score to SF account object Child</span> (async)"
+          },
+          {
+            "number": 12,
+            "as": "9c141d34",
+            "keyword": "catch",
+            "input": {
+              "max_retry_count": "0",
+              "retry_interval": "2"
+            },
+            "block": [
+              {
+                "number": 13,
+                "keyword": "if",
+                "input": {
+                  "type": "compound",
+                  "operand": "and",
+                  "conditions": [
+                    {
+                      "operand": "is_true",
+                      "lhs": "#{_dp('{\"pill_type\":\"account_property\",\"property_name\":\"EmailDeliverability\"}')}",
+                      "rhs": "",
+                      "uuid": "condition-586bf6ee-4b43-47d5-a442-eecd33600105"
+                    }
+                  ]
+                },
+                "block": [
+                  {
+                    "number": 14,
+                    "provider": "email",
+                    "name": "send_mail",
+                    "as": "5bec556b",
+                    "keyword": "action",
+                    "input": {
+                      "email_type": "html",
+                      "to": "#{_dp('{\"pill_type\":\"account_property\",\"property_name\":\"AdminEmailIDs\"}')}",
+                      "subject": "Labster Automation: Failed to fetch health score from BigQuery",
+                      "body": "<p>Hello Team,</p>\n<p><a href=\"#{_dp('{\"pill_type\":\"job_context\",\"path\":[\"job_url\"]}')}\">\n#{_dp('{\"pill_type\":\"job_context\",\"path\":[\"recipe_name\"]}')}</a> executed successfully but failed to fetch data from BiqQuery.\n<br>\n<p>Recipe ID: #{_dp('{\"pill_type\":\"job_context\",\"path\":[\"recipe_id\"]}')}</p>\n<p>Job ID: #{_dp('{\"pill_type\":\"job_context\",\"path\":[\"job_id\"]}')}</p>\n<p>Error Type: #{_dp('{\"pill_type\":\"output\",\"provider\":\"catch\",\"line\":\"9c141d34\",\"path\":[\"type\"]}')}</p>\n<p>Error Message: #{_dp('{\"pill_type\":\"output\",\"provider\":\"catch\",\"line\":\"9c141d34\",\"path\":[\"message\"]}')}</p>\n<br><br>\n<p>Please contact with System Administrator</p>\n<br>\n<p>Labster Automation Team</p>\n"
+                    },
+                    "comment": "Sand Error mail to admin",
+                    "uuid": "19c1d1ff-fb63-4e97-94cc-a49832f629ab",
+                    "skip": false,
+                    "title": null,
+                    "description": null
+                  }
+                ],
+                "uuid": "52cd3455-cbf3-4eaa-af53-8a961902b2c3"
+              },
+              {
+                "number": 15,
+                "keyword": "stop",
+                "input": {
+                  "stop_with_error": "true",
+                  "stop_reason": "Error: Failed to fetch data from Redshift. #{_dp('{\"pill_type\":\"output\",\"provider\":\"catch\",\"line\":\"9c141d34\",\"path\":[\"type\"]}')} | #{_dp('{\"pill_type\":\"output\",\"provider\":\"catch\",\"line\":\"9c141d34\",\"path\":[\"message\"]}')}"
+                },
+                "comment": "Failed to fetch Redshift data",
+                "uuid": "905f0b7c-f0a6-4363-a800-050467bcad23"
+              }
+            ],
+            "uuid": "ca0604b3-e090-452b-a691-362c83fda64c"
+          }
+        ],
+        "uuid": "c57dd8d7-966f-45e4-bcaf-cc1c0340246f"
+      },
+      {
+        "number": 16,
+        "keyword": "stop",
+        "input": {
+          "stop_with_error": "false"
+        },
+        "uuid": "63423a8f-1659-4a10-a6ae-503ad124a6a9"
+      }
+    ],
+    "comment": "Trigger every day @03:00 AM (EST)",
+    "job_report_schema": [
+      {
+        "name": "custom_column_0",
+        "label": "Description"
+      }
+    ],
+    "job_report_config": {
+      "custom_column_0": "Month Date: #{_('data.workato_variable.90e12d30.beginning_of_current_month')}, Redshift Total Records: #{_('data.redshift.2b5980c2.rows.first.____Size', 'list_meta', '____Size', 'data.redshift.2b5980c2.rows')}, Records Added: #{_('data.workato_variable.c59d3db1.record_added')}, Records Skipped: #{_('data.workato_variable.c59d3db1.record_skipped')}, JobId: #{_('data.workato.job_context.job_id')}"
+    },
+    "uuid": "9e76fdf1-b6a8-40bb-bfd4-5d5ef41a7448",
+    "format_version": 2,
+    "title": null,
+    "description": "<span class=\"provider\">Trigger</span> every 1 weeks at <span class=\"provider\">03:00:00 AM</span> on Monday"
+  }
+}

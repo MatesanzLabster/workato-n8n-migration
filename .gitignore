@@ -1,0 +1,4 @@
+vendor/
+.pi/
+.venv/
+.env

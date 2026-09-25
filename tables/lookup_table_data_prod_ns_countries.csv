@@ -1,0 +1,215 @@
+SF_Country_Name,NS_Country_Api_Name
+Andorra,_andorra
+United Arab Emirates,_unitedArabEmirates
+Afghanistan,_afghanistan
+Antigua and Barbuda,_antiguaAndBarbuda
+Anguilla,_anguilla
+Albania,_albania
+Armenia,_armenia
+Angola,_angola
+Antarctica,_antarctica
+Argentina,_argentina
+Austria,_austria
+Australia,_australia
+Aruba,_aruba
+Aland Islands,_alandIslands
+Azerbaijan,_azerbaijan
+Bosnia and Herzegovina,_bosniaAndHerzegovina
+Barbados,_barbados
+Bangladesh,_bangladesh
+Belgium,_belgium
+Burkina Faso,_burkinaFaso
+Bulgaria,_bulgaria
+Bahrain,_bahrain
+Burundi,_burundi
+Benin,_benin
+Saint Barthélemy,_saintBarthelemy
+Bermuda,_bermuda
+Brunei Darussalam,_bruneiDarussalam
+Bolivia,_bolivia
+Brazil,_brazil
+Bahamas,_bahamas
+Bhutan,_bhutan
+Bouvet Island,_bouvetIsland
+Botswana,_botswana
+Belarus,_belarus
+Belize,_belize
+Canada,_canada
+Cocos (Keeling) Islands,_cocosKeelingIslands
+Central African Republic,_centralAfricanRepublic
+Switzerland,_switzerland
+Cote d'Ivoire,_coteDIvoire
+Cook Islands,_cookIslands
+Chile,_chile
+Cameroon,_cameroon
+China,_china
+Colombia,_colombia
+Costa Rica,_costaRica
+Cuba,_cuba
+Cape Verde,_capeVerde
+Christmas Island,_christmasIsland
+Cyprus,_cyprus
+Czech Republic,_czechia
+Germany,_germany
+Djibouti,_djibouti
+Denmark,_denmark
+Dominica,_dominica
+Dominican Republic,_dominicanRepublic
+Algeria,_algeria
+Ecuador,_ecuador
+Estonia,_estonia
+Egypt,_egypt
+Western Sahara,_westernSahara
+Eritrea,_eritrea
+Spain,_spain
+Ethiopia,_ethiopia
+Finland,_finland
+Fiji,_fiji
+Faroe Islands,_faroeIslands
+France,_france
+Gabon,_gabon
+Grenada,_grenada
+Georgia,_georgia
+French Guiana,_frenchGuiana
+Guernsey,_guernsey
+Ghana,_ghana
+Gibraltar,_gibraltar
+Greenland,_greenland
+Gambia,_gambia
+Guinea,_guinea
+Guadeloupe,_guadeloupe
+Equatorial Guinea,_equatorialGuinea
+Greece,_greece
+Guatemala,_guatemala
+Guinea-Bissau,_guineaBissau
+Guyana,_guyana
+Hong Kong,_hongKong
+Honduras,_honduras
+Haiti,_haiti
+Hungary,_hungary
+Indonesia,_indonesia
+Ireland,_ireland
+Israel,_israel
+Isle of Man,_isleOfMan
+India,_india
+British Indian Ocean Territory,_britishIndianOceanTerritory
+Iraq,_iraq
+Iceland,_iceland
+Italy,_italy
+Jersey,_jersey
+Jamaica,_jamaica
+Jordan,_jordan
+Japan,_japan
+Kenya,_kenya
+Kyrgyzstan,_kyrgyzstan
+Cambodia,_cambodia
+Kiribati,_kiribati
+Comoros,_comoros
+Saint Kitts and Nevis,_saintKittsAndNevis
+"Korea, Republic of",_koreaRepublicOf
+Kuwait,_kuwait
+Cayman Islands,_caymanIslands
+Kazakhstan,_kazakhstan
+Lebanon,_lebanon
+Saint Lucia,_saintLucia
+Liechtenstein,_liechtenstein
+Sri Lanka,_sriLanka
+Liberia,_liberia
+Lesotho,_lesotho
+Lithuania,_lithuania
+Luxembourg,_luxembourg
+Latvia,_latvia
+Libya,_libya
+Morocco,_morocco
+Monaco,_monaco
+"Moldova, Republic of",_moldovaRepublicOf
+Montenegro,_montenegro
+Madagascar,_madagascar
+Mali,_mali
+Myanmar,_myanmar
+Mongolia,_mongolia
+Martinique,_martinique
+Mauritania,_mauritania
+Montserrat,_montserrat
+Malta,_malta
+Mauritius,_mauritius
+Maldives,_maldives
+Malawi,_malawi
+Mexico,_mexico
+Malaysia,_malaysia
+Mozambique,_mozambique
+Namibia,_namibia
+New Caledonia,_newCaledonia
+Niger,_niger
+Norfolk Island,_norfolkIsland
+Nigeria,_nigeria
+Nicaragua,_nicaragua
+Netherlands,_netherlands
+Norway,_norway
+Nepal,_nepal
+Nauru,_nauru
+Niue,_niue
+New Zealand,_newZealand
+Oman,_oman
+Panama,_panama
+Peru,_peru
+French Polynesia,_frenchPolynesia
+Papua New Guinea,_papuaNewGuinea
+Philippines,_philippines
+Pakistan,_pakistan
+Poland,_poland
+Puerto Rico,_puertoRico
+Portugal,_portugal
+Paraguay,_paraguay
+Qatar,_qatar
+Romania,_romania
+Serbia,_serbia
+Rwanda,_rwanda
+Saudi Arabia,_saudiArabia
+Solomon Islands,_solomonIslands
+Seychelles,_seychelles
+Sudan,_sudan
+Sweden,_sweden
+Singapore,_singapore
+Slovenia,_slovenia
+Sierra Leone,_sierraLeone
+San Marino,_sanMarino
+Senegal,_senegal
+Somalia,_somalia
+Suriname,_suriname
+South Sudan,_southSudan
+Sao Tome and Principe,_saoTomeAndPrincipe
+El Salvador,_elSalvador
+Syrian Arab Republic,_syrianArabRepublic
+Swaziland,_swaziland
+Turks and Caicos Islands,_turksAndCaicosIslands
+Chad,_chad
+French Southern Territories,_frenchSouthernTerritories
+Togo,_togo
+Thailand,_thailand
+Tajikistan,_tajikistan
+Tokelau,_tokelau
+Turkmenistan,_turkmenistan
+Tunisia,_tunisia
+Tonga,_tonga
+Turkey,_turkey
+Trinidad and Tobago,_trinidadAndTobago
+Tuvalu,_tuvalu
+Taiwan,_taiwan
+Ukraine,_ukraine
+Uganda,_uganda
+United Kingdom,_unitedKingdom
+United States,_unitedStates
+Uruguay,_uruguay
+Uzbekistan,_uzbekistan
+Saint Vincent and the Grenadines,_saintVincentAndTheGrenadines
+Venezuela,_venezuela
+"Virgin Islands, British",_virginIslandsBritish
+Vietnam,_vietNam
+Vanuatu,_vanuatu
+Samoa,_samoa
+Yemen,_yemen
+Mayotte,_mayotte
+South Africa,_southAfrica
+Zambia,_zambia
+Zimbabwe,_zimbabwe

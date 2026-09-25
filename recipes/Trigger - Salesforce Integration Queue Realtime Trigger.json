@@ -1,0 +1,518 @@
+{
+  "result": {
+    "number": 0,
+    "provider": "salesforce",
+    "name": "new_custom_object_webhook",
+    "as": "84bbe66d",
+    "keyword": "trigger",
+    "dynamicPickListSelection": {
+      "sobject_name": "Integration Queue",
+      "field_list": [
+        {
+          "label": "Record ID",
+          "value": "Id"
+        },
+        {
+          "label": "Object",
+          "value": "Object__c"
+        },
+        {
+          "label": "Target System",
+          "value": "Target_System__c"
+        },
+        {
+          "label": "Source RecordId",
+          "value": "Source_RecordId__c"
+        },
+        {
+          "label": "Processed Flag",
+          "value": "Processed_Flag__c"
+        }
+      ]
+    },
+    "input": {
+      "sobject_name": "Integration_Queue__c",
+      "field_list": "Id\nObject__c\nTarget_System__c\nSource_RecordId__c\nProcessed_Flag__c",
+      "since_offset": "0"
+    },
+    "filter": {
+      "conditions": [
+        {
+          "operand": "present",
+          "lhs": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"salesforce\",\"line\":\"84bbe66d\",\"path\":[\"Source_RecordId__c\"]}')}",
+          "rhs": "",
+          "uuid": "condition-ddd60e9b-c597-4ed3-9a99-eb55b7d128e0"
+        },
+        {
+          "operand": "present",
+          "lhs": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"salesforce\",\"line\":\"84bbe66d\",\"path\":[\"Object__c\"]}')}",
+          "rhs": "",
+          "uuid": "condition-9199c669-d2e5-4d3c-aa47-1d2577704e6b"
+        },
+        {
+          "operand": "present",
+          "lhs": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"salesforce\",\"line\":\"84bbe66d\",\"path\":[\"Target_System__c\"]}')}",
+          "rhs": "",
+          "uuid": "condition-223ec4aa-2f5c-4e37-b259-922f424b7d57"
+        },
+        {
+          "operand": "present",
+          "lhs": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"salesforce\",\"line\":\"84bbe66d\",\"path\":[\"Processed_Flag__c\"]}')}",
+          "rhs": "",
+          "uuid": "condition-481c791b-082e-4aa9-8d68-586e52a3afc8"
+        },
+        {
+          "operand": "equals_to",
+          "lhs": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"salesforce\",\"line\":\"84bbe66d\",\"path\":[\"Processed_Flag__c\"]}')}",
+          "rhs": "Submitted",
+          "uuid": "condition-161d4a64-f875-40aa-9826-013179bc88f3"
+        }
+      ],
+      "operand": "and",
+      "type": "compound"
+    },
+    "extended_output_schema": [
+      {
+        "control_type": "date_time",
+        "custom": false,
+        "label": "Created Date",
+        "name": "CreatedDate",
+        "optional": true,
+        "parse_output": "parse_iso8601_timestamp",
+        "type": "date_time",
+        "render_input": "render_iso8601_timestamp",
+        "sfdc_createable": true,
+        "sfdc_updateable": false
+      },
+      {
+        "control_type": "date_time",
+        "custom": false,
+        "label": "Last Modified Date",
+        "name": "LastModifiedDate",
+        "optional": true,
+        "parse_output": "parse_iso8601_timestamp",
+        "type": "date_time",
+        "render_input": "render_iso8601_timestamp",
+        "sfdc_createable": true,
+        "sfdc_updateable": false
+      },
+      {
+        "control_type": "text",
+        "custom": false,
+        "label": "Record ID",
+        "name": "Id",
+        "optional": true,
+        "type": "string",
+        "key_scope": "Integration_Queue__c",
+        "sfdc_createable": false,
+        "sfdc_updateable": false
+      },
+      {
+        "control_type": "date_time",
+        "custom": false,
+        "label": "System Modstamp",
+        "name": "SystemModstamp",
+        "optional": true,
+        "parse_output": "parse_iso8601_timestamp",
+        "type": "date_time",
+        "render_input": "render_iso8601_timestamp",
+        "sfdc_createable": false,
+        "sfdc_updateable": false
+      },
+      {
+        "control_type": "select",
+        "custom": true,
+        "label": "Object",
+        "name": "Object__c",
+        "pick_list": "sobject_field_values_list",
+        "pick_list_params": {
+          "sobject_name": "\"Integration_Queue__c\"",
+          "field_name": "\"Object__c\""
+        },
+        "toggle_field": {
+          "control_type": "text",
+          "label": "Object",
+          "toggle_hint": "Enter custom value",
+          "custom": true,
+          "sfdc_createable": true,
+          "sfdc_updateable": true,
+          "type": "string",
+          "name": "Object__c"
+        },
+        "toggle_hint": "Select from list",
+        "type": "string",
+        "sfdc_createable": true,
+        "sfdc_updateable": true
+      },
+      {
+        "control_type": "select",
+        "custom": true,
+        "label": "Processed Flag",
+        "name": "Processed_Flag__c",
+        "optional": true,
+        "pick_list": "sobject_field_values_list",
+        "pick_list_params": {
+          "sobject_name": "\"Integration_Queue__c\"",
+          "field_name": "\"Processed_Flag__c\""
+        },
+        "toggle_field": {
+          "control_type": "text",
+          "label": "Processed Flag",
+          "toggle_hint": "Enter custom value",
+          "optional": true,
+          "custom": true,
+          "sfdc_createable": true,
+          "sfdc_updateable": true,
+          "type": "string",
+          "name": "Processed_Flag__c"
+        },
+        "toggle_hint": "Select from list",
+        "type": "string",
+        "sfdc_createable": true,
+        "sfdc_updateable": true
+      },
+      {
+        "control_type": "text",
+        "custom": true,
+        "label": "Source RecordId",
+        "name": "Source_RecordId__c",
+        "type": "string",
+        "sfdc_createable": true,
+        "sfdc_updateable": true
+      },
+      {
+        "control_type": "select",
+        "custom": true,
+        "label": "Target System",
+        "name": "Target_System__c",
+        "pick_list": "sobject_field_values_list",
+        "pick_list_params": {
+          "sobject_name": "\"Integration_Queue__c\"",
+          "field_name": "\"Target_System__c\""
+        },
+        "toggle_field": {
+          "control_type": "text",
+          "label": "Target System",
+          "toggle_hint": "Enter custom value",
+          "custom": true,
+          "sfdc_createable": true,
+          "sfdc_updateable": true,
+          "type": "string",
+          "name": "Target_System__c"
+        },
+        "toggle_hint": "Select from list",
+        "type": "string",
+        "sfdc_createable": true,
+        "sfdc_updateable": true
+      },
+      {
+        "label": "Combined attachments",
+        "name": "CombinedAttachments",
+        "properties": [
+          {
+            "control_type": "number",
+            "label": "Total size",
+            "parse_output": "integer_conversion",
+            "type": "integer",
+            "name": "totalSize"
+          },
+          {
+            "name": "records",
+            "type": "array",
+            "of": "object",
+            "label": "Files",
+            "properties": [
+              {
+                "control_type": "text",
+                "label": "ID",
+                "type": "string",
+                "name": "Id"
+              },
+              {
+                "control_type": "number",
+                "label": "Content size",
+                "parse_output": "integer_conversion",
+                "type": "integer",
+                "name": "ContentSize"
+              },
+              {
+                "control_type": "url",
+                "label": "Content URL",
+                "type": "string",
+                "name": "ContentUrl"
+              },
+              {
+                "control_type": "text",
+                "label": "File extension",
+                "type": "string",
+                "name": "FileExtension"
+              },
+              {
+                "control_type": "text",
+                "label": "File type",
+                "type": "string",
+                "name": "FileType"
+              },
+              {
+                "control_type": "text",
+                "label": "Parent ID",
+                "type": "string",
+                "name": "ParentId"
+              },
+              {
+                "control_type": "text",
+                "label": "Record type",
+                "type": "string",
+                "name": "RecordType"
+              },
+              {
+                "control_type": "text",
+                "label": "Title",
+                "type": "string",
+                "name": "Title"
+              }
+            ]
+          }
+        ],
+        "type": "object",
+        "sfdc_field_type": "CombinedAttachment"
+      }
+    ],
+    "extended_input_schema": [
+      {
+        "control_type": "select",
+        "default": -3600,
+        "hint": "When starting the recipe for the first time, picks up Salesforce records from the specified date and time. <b>Once the recipe has been run or tested, this value cannot be changed.</b>",
+        "label": "When first started, this recipe should pick up events from",
+        "name": "since_offset",
+        "pick_list": [
+          [
+            "Recipe start",
+            0
+          ],
+          [
+            "An hour ago",
+            -3600
+          ],
+          [
+            "Yesterday",
+            -86400
+          ],
+          [
+            "Last week",
+            -604800
+          ],
+          [
+            "Last month",
+            -2629746
+          ],
+          [
+            "Beginning of time",
+            "no_limit"
+          ]
+        ],
+        "since_field": true,
+        "toggle_field": {
+          "control_type": "date_time",
+          "label": "When first started, this recipe should pick up events from",
+          "render_input": "convert_date_time",
+          "parse_output": "convert_date_time",
+          "toggle_hint": "Enter custom value",
+          "since_field": true,
+          "hint": "When starting the recipe for the first time, picks up Salesforce records from the specified date and time. <b>Once the recipe has been run or tested, this value cannot be changed.</b>",
+          "type": "date_time",
+          "name": "since"
+        },
+        "toggle_hint": "Select from list",
+        "type": "string"
+      }
+    ],
+    "block": [
+      {
+        "number": 1,
+        "provider": "workato_variable",
+        "name": "declare_variable",
+        "as": "115b4164",
+        "keyword": "action",
+        "input": {
+          "variables": {
+            "schema": [
+              {
+                "name": "AdminEmailIDs",
+                "type": "string",
+                "optional": true,
+                "label": "AdminEmailIDs",
+                "control_type": "text"
+              }
+            ],
+            "data": {
+              "AdminEmailIDs": "#{_dp('{\"pill_type\":\"account_property\",\"property_name\":\"AdminEmailIDs\"}')}"
+            }
+          }
+        },
+        "extended_output_schema": [
+          {
+            "control_type": "text",
+            "label": "AdminEmailIDs",
+            "name": "AdminEmailIDs",
+            "optional": true,
+            "type": "string"
+          }
+        ],
+        "extended_input_schema": [
+          {
+            "add_field_label": "Add a variable",
+            "control_type": "form-schema-builder",
+            "empty_schema_title": "Add variables by giving them a name, type and default value",
+            "exclude_fields": [
+              "hint"
+            ],
+            "item_label": "variable",
+            "label": "Variables",
+            "mark_as_required": true,
+            "name": "variables",
+            "ngIf": "!input.name",
+            "optional": true,
+            "properties": [
+              {
+                "control_type": "text",
+                "label": "Schema",
+                "extends_schema": true,
+                "broadcast_change_event": true,
+                "type": "string",
+                "name": "schema"
+              },
+              {
+                "properties": [
+                  {
+                    "control_type": "text",
+                    "label": "AdminEmailIDs",
+                    "name": "AdminEmailIDs",
+                    "type": "string",
+                    "optional": true,
+                    "hint": "Defaults to nil if not supplied.",
+                    "sticky": true
+                  }
+                ],
+                "label": "Data",
+                "type": "object",
+                "name": "data"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "visible_config_fields": [
+          "variables.data.AdminEmailIDs"
+        ],
+        "uuid": "4ca5a255-ef4d-43fc-986f-55d5847111c3",
+        "title": "  Create variable AdminEmailIDs",
+        "description": "Create variable <span class=\"provider\">AdminEmailIDs</span>"
+      },
+      {
+        "number": 2,
+        "keyword": "if",
+        "input": {
+          "type": "compound",
+          "operand": "and",
+          "conditions": [
+            {
+              "operand": "equals_to",
+              "lhs": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"salesforce\",\"line\":\"84bbe66d\",\"path\":[\"Object__c\"]}')}",
+              "rhs": "Opportunity",
+              "uuid": "condition-9f3a9f6d-7e3f-47e9-9013-62b1a433b607"
+            },
+            {
+              "operand": "equals_to",
+              "lhs": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"salesforce\",\"line\":\"84bbe66d\",\"path\":[\"Target_System__c\"]}')}",
+              "rhs": "Netsuite",
+              "uuid": "condition-782e3ebd-9e8c-4aa6-84bf-79b3e25335ac"
+            }
+          ]
+        },
+        "block": [
+          {
+            "number": 3,
+            "provider": "workato_recipe_function",
+            "name": "call_recipe",
+            "as": "68cc8817",
+            "keyword": "action",
+            "dynamicPickListSelection": {
+              "flow_id": "N8N Test: Callable - Salesforce to Netsuite Sales Automation"
+            },
+            "input": {
+              "flow_id": "74967235",
+              "parameters": {
+                "AdminEmailIDs": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"workato_variable\",\"line\":\"115b4164\",\"path\":[\"AdminEmailIDs\"]}')}",
+                "IntegrationQueueId": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"salesforce\",\"line\":\"84bbe66d\",\"path\":[\"Id\"]}')}",
+                "OpportunityId": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"salesforce\",\"line\":\"84bbe66d\",\"path\":[\"Source_RecordId__c\"]}')}"
+              }
+            },
+            "extended_input_schema": [
+              {
+                "label": "Parameters",
+                "name": "parameters",
+                "properties": [
+                  {
+                    "control_type": "text",
+                    "label": "Opportunity ID",
+                    "name": "OpportunityId",
+                    "type": "string",
+                    "optional": false,
+                    "hint": "SF Opportunity RecordId"
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "IntegrationQueue ID",
+                    "name": "IntegrationQueueId",
+                    "type": "string",
+                    "optional": false,
+                    "hint": "SF IntegrationQueue RecordId"
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "AdminEmailIDs",
+                    "name": "AdminEmailIDs",
+                    "type": "string",
+                    "optional": false
+                  }
+                ],
+                "type": "object"
+              }
+            ],
+            "uuid": "7173b0d6-3ef8-44d4-afe3-8b0c63279183",
+            "title": null,
+            "description": "Call <span class=\"provider\">N8N Test: Callable - Salesforce to Netsuite Sales Automation</span>"
+          }
+        ],
+        "uuid": "22c2cc65-70e9-45ef-93d7-a6bb3990621e"
+      },
+      {
+        "number": 4,
+        "keyword": "stop",
+        "input": {
+          "stop_with_error": "false"
+        },
+        "uuid": "dd4d6ccd-dd00-435a-be3b-37c36dc838ae"
+      }
+    ],
+    "job_report_schema": [
+      {
+        "name": "custom_column_0",
+        "label": "Description"
+      },
+      {
+        "name": "custom_column_1",
+        "label": "Execution"
+      }
+    ],
+    "job_report_config": {
+      "custom_column_0": "Object: #{_('data.salesforce.84bbe66d.Object__c')}, Source RecordId: #{_('data.salesforce.84bbe66d.Source_RecordId__c')}, Target System: #{_('data.salesforce.84bbe66d.Target_System__c')}, RecordId: #{_('data.salesforce.84bbe66d.Id')}",
+      "custom_column_1": "JobId: #{_('data.workato.job_context.job_id')}, isRepeat: #{_('data.workato.job_context.is_repeat')}"
+    },
+    "uuid": "4a76d03c-767e-400c-882a-55cc82c591bc",
+    "format_version": 2,
+    "title": "New Integration Queue",
+    "description": "New <span class=\"provider\">Integration Queue</span> in <span class=\"provider\">Salesforce</span>"
+  }
+}

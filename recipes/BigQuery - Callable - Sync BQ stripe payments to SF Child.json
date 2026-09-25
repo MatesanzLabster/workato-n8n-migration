@@ -1,0 +1,2803 @@
+{
+  "result": {
+    "number": 0,
+    "provider": "workato_recipe_function",
+    "name": "execute",
+    "as": "54ec1c52",
+    "keyword": "trigger",
+    "input": {},
+    "block": [
+      {
+        "number": 1,
+        "provider": "workato_variable",
+        "name": "declare_list",
+        "as": "1edf6d8d",
+        "keyword": "action",
+        "input": {
+          "name": "BQ_Records",
+          "list_item_schema_json": [
+            {
+              "control_type": "text",
+              "label": "Account Id",
+              "type": "string",
+              "name": "account_id",
+              "optional": false
+            },
+            {
+              "name": "first_day_of_month",
+              "type": "date_time",
+              "optional": false,
+              "label": "First Day of Month",
+              "control_type": "date",
+              "render_input": "date_conversion",
+              "parse_output": "date_conversion"
+            },
+            {
+              "name": "currency",
+              "type": "string",
+              "optional": false,
+              "label": "Currency",
+              "control_type": "text"
+            },
+            {
+              "name": "total_amount",
+              "type": "number",
+              "optional": false,
+              "label": "Total Amount",
+              "control_type": "number",
+              "parse_output": "float_conversion"
+            },
+            {
+              "name": "transaction_count",
+              "type": "number",
+              "optional": false,
+              "label": "Transaction Count",
+              "control_type": "number",
+              "parse_output": "float_conversion"
+            },
+            {
+              "name": "key_id",
+              "type": "string",
+              "optional": false,
+              "label": "KeyId",
+              "control_type": "text"
+            },
+            {
+              "name": "year_month",
+              "type": "string",
+              "optional": false,
+              "label": "Year Month",
+              "control_type": "text"
+            }
+          ]
+        },
+        "extended_output_schema": [
+          {
+            "hint": "",
+            "label": "BQ_Records",
+            "name": "list_items",
+            "of": "object",
+            "optional": false,
+            "properties": [
+              {
+                "control_type": "text",
+                "label": "Account Id",
+                "type": "string",
+                "name": "account_id",
+                "optional": false
+              },
+              {
+                "control_type": "date",
+                "label": "First Day of Month",
+                "render_input": "date_conversion",
+                "parse_output": "date_conversion",
+                "name": "first_day_of_month",
+                "type": "date_time",
+                "optional": false
+              },
+              {
+                "control_type": "text",
+                "label": "Currency",
+                "name": "currency",
+                "type": "string",
+                "optional": false
+              },
+              {
+                "control_type": "number",
+                "label": "Total Amount",
+                "parse_output": "float_conversion",
+                "name": "total_amount",
+                "type": "number",
+                "optional": false
+              },
+              {
+                "control_type": "number",
+                "label": "Transaction Count",
+                "parse_output": "float_conversion",
+                "name": "transaction_count",
+                "type": "number",
+                "optional": false
+              },
+              {
+                "control_type": "text",
+                "label": "KeyId",
+                "name": "key_id",
+                "type": "string",
+                "optional": false
+              },
+              {
+                "control_type": "text",
+                "label": "Year Month",
+                "name": "year_month",
+                "type": "string",
+                "optional": false
+              }
+            ],
+            "type": "array"
+          }
+        ],
+        "extended_input_schema": [
+          {
+            "hint": "Set the initial items in the list. Defaults to an empty list if not supplied.",
+            "label": "Items",
+            "name": "list_items",
+            "of": "object",
+            "optional": true,
+            "properties": [
+              {
+                "control_type": "text",
+                "label": "Account Id",
+                "type": "string",
+                "name": "account_id",
+                "optional": false
+              },
+              {
+                "control_type": "date",
+                "label": "First Day of Month",
+                "render_input": "date_conversion",
+                "parse_output": "date_conversion",
+                "name": "first_day_of_month",
+                "type": "date_time",
+                "optional": false
+              },
+              {
+                "control_type": "text",
+                "label": "Currency",
+                "name": "currency",
+                "type": "string",
+                "optional": false
+              },
+              {
+                "control_type": "number",
+                "label": "Total Amount",
+                "parse_output": "float_conversion",
+                "name": "total_amount",
+                "type": "number",
+                "optional": false
+              },
+              {
+                "control_type": "number",
+                "label": "Transaction Count",
+                "parse_output": "float_conversion",
+                "name": "transaction_count",
+                "type": "number",
+                "optional": false
+              },
+              {
+                "control_type": "text",
+                "label": "KeyId",
+                "name": "key_id",
+                "type": "string",
+                "optional": false
+              },
+              {
+                "control_type": "text",
+                "label": "Year Month",
+                "name": "year_month",
+                "type": "string",
+                "optional": false
+              }
+            ],
+            "type": "array"
+          }
+        ],
+        "uuid": "52fb07d5-bf4d-4e1e-b431-d317dc7fceed",
+        "title": " Create BQ_Records list",
+        "description": "Create <span class=\"provider\">BQ_Records</span> list"
+      },
+      {
+        "number": 2,
+        "provider": "lookup_table",
+        "name": "search_entries",
+        "as": "42ba6be1",
+        "keyword": "action",
+        "dynamicPickListSelection": {
+          "lookup_table_id": "PROD_StripePayments_BigQuery"
+        },
+        "input": {
+          "lookup_table_id": "3208207",
+          "parameters": {
+            "col2": "false"
+          }
+        },
+        "extended_output_schema": [
+          {
+            "label": "Entries",
+            "name": "entries",
+            "of": "object",
+            "properties": [
+              {
+                "control_type": "number",
+                "label": "Entry ID",
+                "parse_output": "integer_conversion",
+                "type": "integer",
+                "name": "id"
+              },
+              {
+                "properties": [
+                  {
+                    "control_type": "text",
+                    "label": "Records",
+                    "name": "col1",
+                    "type": "string",
+                    "sticky": true
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "Processed?",
+                    "name": "col2",
+                    "type": "string",
+                    "sticky": true
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "Status",
+                    "name": "col3",
+                    "type": "string",
+                    "sticky": true
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "Message",
+                    "name": "col4",
+                    "type": "string",
+                    "sticky": true
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "KeyId",
+                    "name": "col5",
+                    "type": "string",
+                    "sticky": true
+                  }
+                ],
+                "label": "Entry",
+                "type": "object",
+                "name": "entry"
+              }
+            ],
+            "type": "array"
+          }
+        ],
+        "extended_input_schema": [
+          {
+            "hint": "Provide one or more entry fields to search the entry",
+            "label": "Search by",
+            "name": "parameters",
+            "properties": [
+              {
+                "control_type": "text",
+                "label": "Records",
+                "name": "col1",
+                "type": "string",
+                "sticky": true,
+                "optional": true
+              },
+              {
+                "control_type": "text",
+                "label": "Processed?",
+                "name": "col2",
+                "type": "string",
+                "sticky": true,
+                "optional": true
+              },
+              {
+                "control_type": "text",
+                "label": "Status",
+                "name": "col3",
+                "type": "string",
+                "sticky": true,
+                "optional": true
+              },
+              {
+                "control_type": "text",
+                "label": "Message",
+                "name": "col4",
+                "type": "string",
+                "sticky": true,
+                "optional": true
+              },
+              {
+                "control_type": "text",
+                "label": "KeyId",
+                "name": "col5",
+                "type": "string",
+                "sticky": true,
+                "optional": true
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "visible_config_fields": [
+          "lookup_table_id",
+          "parameters.col2",
+          "parameters"
+        ],
+        "hidden_config_fields": [
+          "parameters.col1",
+          "parameters.col3",
+          "parameters.col4",
+          "parameters.col5",
+          "parameters.col6"
+        ],
+        "comment": "Retrieve all Processed? = false records",
+        "uuid": "1b70fdf2-bb52-46c8-955c-ce8be4befed8",
+        "title": null,
+        "description": "Search <span class=\"provider\">entries</span> in <span class=\"provider\">PROD_StripePayments_BigQuery</span> lookup table"
+      },
+      {
+        "number": 3,
+        "provider": "workato_variable",
+        "name": "declare_variable",
+        "as": "23ab618c",
+        "keyword": "action",
+        "input": {
+          "variables": {
+            "schema": [
+              {
+                "name": "batch_size",
+                "type": "integer",
+                "optional": true,
+                "label": "batch_size",
+                "control_type": "integer"
+              }
+            ],
+            "data": {
+              "batch_size": "2000"
+            }
+          }
+        },
+        "extended_output_schema": [
+          {
+            "control_type": "integer",
+            "label": "batch_size",
+            "name": "batch_size",
+            "optional": true,
+            "parse_output": "integer_conversion",
+            "type": "integer"
+          }
+        ],
+        "extended_input_schema": [
+          {
+            "add_field_label": "Add a variable",
+            "control_type": "form-schema-builder",
+            "empty_schema_title": "Add variables by giving them a name, type and default value",
+            "exclude_fields": [
+              "hint"
+            ],
+            "item_label": "variable",
+            "label": "Variables",
+            "mark_as_required": true,
+            "name": "variables",
+            "ngIf": "!input.name",
+            "optional": true,
+            "properties": [
+              {
+                "control_type": "text",
+                "label": "Schema",
+                "extends_schema": true,
+                "broadcast_change_event": true,
+                "type": "string",
+                "name": "schema"
+              },
+              {
+                "properties": [
+                  {
+                    "control_type": "integer",
+                    "label": "batch_size",
+                    "parse_output": "integer_conversion",
+                    "name": "batch_size",
+                    "type": "integer",
+                    "optional": true,
+                    "hint": "Defaults to nil if not supplied.",
+                    "sticky": true
+                  }
+                ],
+                "label": "Data",
+                "type": "object",
+                "name": "data"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "visible_config_fields": [
+          "variables.data.batch_size"
+        ],
+        "comment": "Batch Size = 2000",
+        "uuid": "406b7df3-35ca-4d89-8be3-bc6d4a1e3bcf",
+        "title": "  Create variable batch_size",
+        "description": "Create variable <span class=\"provider\">batch_size</span>"
+      },
+      {
+        "number": 4,
+        "provider": "workato_variable",
+        "name": "declare_variable",
+        "as": "cb78cfa9",
+        "keyword": "action",
+        "input": {
+          "variables": {
+            "schema": [
+              {
+                "control_type": "integer",
+                "label": "record_count",
+                "parse_output": "integer_conversion",
+                "name": "record_count",
+                "type": "integer",
+                "optional": true
+              },
+              {
+                "control_type": "integer",
+                "label": "total_batch",
+                "parse_output": "integer_conversion",
+                "name": "total_batch",
+                "type": "integer",
+                "optional": true
+              },
+              {
+                "control_type": "integer",
+                "label": "batch_count",
+                "parse_output": "integer_conversion",
+                "name": "batch_count",
+                "type": "integer",
+                "optional": true
+              },
+              {
+                "control_type": "integer",
+                "label": "success_count",
+                "parse_output": "integer_conversion",
+                "name": "success_count",
+                "type": "integer",
+                "optional": true
+              }
+            ],
+            "data": {
+              "record_count": "0",
+              "batch_count": "0",
+              "total_batch": "=(_dp('{\"pill_type\":\"output\",\"provider\":\"lookup_table\",\"line\":\"42ba6be1\",\"path\":[\"entries\",{\"path_element_type\":\"size\"}]}')/_dp('{\"pill_type\":\"output\",\"provider\":\"workato_variable\",\"line\":\"23ab618c\",\"path\":[\"batch_size\"]}')).ceil + 1",
+              "success_count": "0"
+            }
+          }
+        },
+        "extended_output_schema": [
+          {
+            "control_type": "integer",
+            "label": "record_count",
+            "name": "record_count",
+            "optional": true,
+            "parse_output": "integer_conversion",
+            "type": "integer"
+          },
+          {
+            "control_type": "integer",
+            "label": "total_batch",
+            "name": "total_batch",
+            "optional": true,
+            "parse_output": "integer_conversion",
+            "type": "integer"
+          },
+          {
+            "control_type": "integer",
+            "label": "batch_count",
+            "name": "batch_count",
+            "optional": true,
+            "parse_output": "integer_conversion",
+            "type": "integer"
+          },
+          {
+            "control_type": "integer",
+            "label": "success_count",
+            "name": "success_count",
+            "optional": true,
+            "parse_output": "integer_conversion",
+            "type": "integer"
+          }
+        ],
+        "extended_input_schema": [
+          {
+            "add_field_label": "Add a variable",
+            "control_type": "form-schema-builder",
+            "empty_schema_title": "Add variables by giving them a name, type and default value",
+            "exclude_fields": [
+              "hint"
+            ],
+            "item_label": "variable",
+            "label": "Variables",
+            "mark_as_required": true,
+            "name": "variables",
+            "ngIf": "!input.name",
+            "optional": true,
+            "properties": [
+              {
+                "control_type": "text",
+                "label": "Schema",
+                "extends_schema": true,
+                "broadcast_change_event": true,
+                "type": "string",
+                "name": "schema"
+              },
+              {
+                "properties": [
+                  {
+                    "control_type": "integer",
+                    "label": "record_count",
+                    "parse_output": "integer_conversion",
+                    "name": "record_count",
+                    "type": "integer",
+                    "optional": true,
+                    "hint": "Defaults to nil if not supplied.",
+                    "sticky": true
+                  },
+                  {
+                    "control_type": "integer",
+                    "label": "total_batch",
+                    "parse_output": "integer_conversion",
+                    "name": "total_batch",
+                    "type": "integer",
+                    "optional": true,
+                    "hint": "Defaults to nil if not supplied.",
+                    "sticky": true
+                  },
+                  {
+                    "control_type": "integer",
+                    "label": "batch_count",
+                    "parse_output": "integer_conversion",
+                    "name": "batch_count",
+                    "type": "integer",
+                    "optional": true,
+                    "hint": "Defaults to nil if not supplied.",
+                    "sticky": true
+                  },
+                  {
+                    "control_type": "integer",
+                    "label": "success_count",
+                    "parse_output": "integer_conversion",
+                    "name": "success_count",
+                    "type": "integer",
+                    "optional": true,
+                    "hint": "Defaults to nil if not supplied.",
+                    "sticky": true
+                  }
+                ],
+                "label": "Data",
+                "type": "object",
+                "name": "data"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "visible_config_fields": [
+          "variables.data.record_count",
+          "variables",
+          "variables.schema",
+          "variables.data",
+          "variables.data.batch_size",
+          "variables.data.batch_count",
+          "variables.data.total_batch",
+          "variables.data.success_count"
+        ],
+        "uuid": "876052ce-f1ea-4a2b-ad2b-cb2ab4988d1f",
+        "title": "  Create variables record_count, total_batch, batch_count, success_count",
+        "description": "Create variables <span class=\"provider\">record_count</span>, <span class=\"provider\">total_batch</span>, <span class=\"provider\">batch_count</span>, <span class=\"provider\">success_count</span>"
+      },
+      {
+        "number": 5,
+        "provider": "workato_variable",
+        "name": "declare_list",
+        "as": "53380a0f",
+        "keyword": "action",
+        "input": {
+          "name": "FailedRecords",
+          "list_item_schema_json": [
+            {
+              "control_type": "text",
+              "label": "KeyId",
+              "type": "string",
+              "name": "key_id",
+              "optional": false
+            },
+            {
+              "name": "error",
+              "type": "string",
+              "optional": false,
+              "label": "Error",
+              "control_type": "text"
+            }
+          ]
+        },
+        "extended_output_schema": [
+          {
+            "hint": "",
+            "label": "FailedRecords",
+            "name": "list_items",
+            "of": "object",
+            "optional": false,
+            "properties": [
+              {
+                "control_type": "text",
+                "label": "KeyId",
+                "type": "string",
+                "name": "key_id",
+                "optional": false
+              },
+              {
+                "control_type": "text",
+                "label": "Error",
+                "name": "error",
+                "type": "string",
+                "optional": false
+              }
+            ],
+            "type": "array"
+          }
+        ],
+        "extended_input_schema": [
+          {
+            "hint": "Set the initial items in the list. Defaults to an empty list if not supplied.",
+            "label": "Items",
+            "name": "list_items",
+            "of": "object",
+            "optional": true,
+            "properties": [
+              {
+                "control_type": "text",
+                "label": "KeyId",
+                "type": "string",
+                "name": "key_id",
+                "optional": false
+              },
+              {
+                "control_type": "text",
+                "label": "Error",
+                "name": "error",
+                "type": "string",
+                "optional": false
+              }
+            ],
+            "type": "array"
+          }
+        ],
+        "uuid": "03ed9c42-95c2-4519-8583-39497921881a",
+        "title": " Create FailedRecords list",
+        "description": "Create <span class=\"provider\">FailedRecords</span> list"
+      },
+      {
+        "number": 6,
+        "as": "3e9f8949",
+        "keyword": "foreach",
+        "repeat_mode": "simple",
+        "clear_scope": "false",
+        "input": {},
+        "block": [
+          {
+            "number": 7,
+            "keyword": "try",
+            "input": {},
+            "block": [
+              {
+                "number": 8,
+                "provider": "js_eval",
+                "name": "invoke_custom_js_code",
+                "as": "1649445c",
+                "keyword": "action",
+                "input": {
+                  "code": "const fetch = require(\"node-fetch\")\n\nexports.main = ({ strData }) => {\n  let record = JSON.parse(strData);\n  return {record};\n};",
+                  "name": "string to json",
+                  "code_input": {
+                    "schema": [
+                      {
+                        "name": "strData",
+                        "type": "string",
+                        "optional": true,
+                        "label": "strData",
+                        "control_type": "text"
+                      }
+                    ],
+                    "data": {
+                      "strData": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"foreach\",\"line\":\"3e9f8949\",\"path\":[\"entry\",\"col1\"]}')}"
+                    }
+                  },
+                  "code_output_schema_json": [
+                    {
+                      "properties": [
+                        {
+                          "control_type": "text",
+                          "label": "Account ID",
+                          "type": "string",
+                          "name": "account_id",
+                          "optional": false
+                        },
+                        {
+                          "name": "first_day_of_month",
+                          "type": "date_time",
+                          "optional": false,
+                          "label": "First Day of Month",
+                          "control_type": "date",
+                          "render_input": "date_conversion",
+                          "parse_output": "date_conversion"
+                        },
+                        {
+                          "name": "currency",
+                          "type": "string",
+                          "optional": false,
+                          "label": "Currency",
+                          "control_type": "text"
+                        },
+                        {
+                          "name": "total_amount",
+                          "type": "number",
+                          "optional": false,
+                          "label": "Total Amount",
+                          "control_type": "number",
+                          "parse_output": "float_conversion"
+                        },
+                        {
+                          "name": "transaction_count",
+                          "type": "number",
+                          "optional": false,
+                          "label": "Transaction Count",
+                          "control_type": "number",
+                          "parse_output": "float_conversion"
+                        },
+                        {
+                          "name": "year_month",
+                          "type": "string",
+                          "optional": false,
+                          "label": "Year Month",
+                          "control_type": "text"
+                        }
+                      ],
+                      "label": "Record",
+                      "type": "object",
+                      "name": "record"
+                    }
+                  ]
+                },
+                "extended_output_schema": [
+                  {
+                    "label": "Output",
+                    "name": "output",
+                    "properties": [
+                      {
+                        "properties": [
+                          {
+                            "control_type": "text",
+                            "label": "Account ID",
+                            "type": "string",
+                            "name": "account_id",
+                            "optional": false
+                          },
+                          {
+                            "control_type": "date",
+                            "label": "First Day of Month",
+                            "render_input": "date_conversion",
+                            "parse_output": "date_conversion",
+                            "name": "first_day_of_month",
+                            "type": "date_time",
+                            "optional": false
+                          },
+                          {
+                            "control_type": "text",
+                            "label": "Currency",
+                            "name": "currency",
+                            "type": "string",
+                            "optional": false
+                          },
+                          {
+                            "control_type": "number",
+                            "label": "Total Amount",
+                            "parse_output": "float_conversion",
+                            "name": "total_amount",
+                            "type": "number",
+                            "optional": false
+                          },
+                          {
+                            "control_type": "number",
+                            "label": "Transaction Count",
+                            "parse_output": "float_conversion",
+                            "name": "transaction_count",
+                            "type": "number",
+                            "optional": false
+                          },
+                          {
+                            "control_type": "text",
+                            "label": "Year Month",
+                            "name": "year_month",
+                            "type": "string",
+                            "optional": false
+                          }
+                        ],
+                        "label": "Record",
+                        "type": "object",
+                        "name": "record"
+                      }
+                    ],
+                    "type": "object"
+                  }
+                ],
+                "extended_input_schema": [
+                  {
+                    "control_type": "form-schema-builder",
+                    "hint": "Define the input fields that will be passed to your JavaScript code",
+                    "label": "Input fields",
+                    "name": "code_input",
+                    "optional": true,
+                    "override": true,
+                    "properties": [
+                      {
+                        "control_type": "text",
+                        "label": "Schema",
+                        "extends_schema": true,
+                        "type": "string",
+                        "name": "schema"
+                      },
+                      {
+                        "properties": [
+                          {
+                            "control_type": "text",
+                            "label": "strData",
+                            "name": "strData",
+                            "type": "string",
+                            "optional": true
+                          }
+                        ],
+                        "label": "Data",
+                        "type": "object",
+                        "name": "data"
+                      }
+                    ],
+                    "sticky": true,
+                    "type": "object"
+                  }
+                ],
+                "visible_config_fields": [
+                  "name",
+                  "code_input",
+                  "code_output_schema_json",
+                  "code",
+                  "code_input.data.string",
+                  "code_input.schema",
+                  "code_input.data",
+                  "code_input.data.data",
+                  "code_input.data.strData"
+                ],
+                "uuid": "42bc72f4-6313-4321-ba8e-cfda8cac0ae8",
+                "skip": false,
+                "title": null,
+                "description": "Execute <span class=\"provider\">JavaScript</span> code: <span class=\"provider\">string to json</span>"
+              },
+              {
+                "number": 9,
+                "provider": "workato_variable",
+                "name": "insert_to_list",
+                "as": "9ebfa65f",
+                "keyword": "action",
+                "dynamicPickListSelection": {
+                  "name": "Redshift_Records (step 2)"
+                },
+                "input": {
+                  "location": "end",
+                  "name": "52fb07d5-bf4d-4e1e-b431-d317dc7fceed:1edf6d8d",
+                  "list_item": {
+                    "account_id": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"js_eval\",\"line\":\"1649445c\",\"path\":[\"output\",\"record\",\"account_id\"]}')}",
+                    "first_day_of_month": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"js_eval\",\"line\":\"1649445c\",\"path\":[\"output\",\"record\",\"first_day_of_month\"]}')}",
+                    "currency": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"js_eval\",\"line\":\"1649445c\",\"path\":[\"output\",\"record\",\"currency\"]}')}",
+                    "total_amount": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"js_eval\",\"line\":\"1649445c\",\"path\":[\"output\",\"record\",\"total_amount\"]}')}",
+                    "transaction_count": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"js_eval\",\"line\":\"1649445c\",\"path\":[\"output\",\"record\",\"transaction_count\"]}')}",
+                    "key_id": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"js_eval\",\"line\":\"1649445c\",\"path\":[\"output\",\"record\",\"account_id\"]}')}_#{_dp('{\"pill_type\":\"output\",\"provider\":\"js_eval\",\"line\":\"1649445c\",\"path\":[\"output\",\"record\",\"year_month\"]}')}",
+                    "year_month": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"js_eval\",\"line\":\"1649445c\",\"path\":[\"output\",\"record\",\"year_month\"]}')}"
+                  }
+                },
+                "extended_input_schema": [
+                  {
+                    "hint": "",
+                    "label": "List item",
+                    "name": "list_item",
+                    "optional": false,
+                    "properties": [
+                      {
+                        "control_type": "text",
+                        "label": "Account Id",
+                        "type": "string",
+                        "name": "account_id",
+                        "optional": false
+                      },
+                      {
+                        "control_type": "date",
+                        "label": "First Day of Month",
+                        "render_input": "date_conversion",
+                        "parse_output": "date_conversion",
+                        "name": "first_day_of_month",
+                        "type": "date_time",
+                        "optional": false
+                      },
+                      {
+                        "control_type": "text",
+                        "label": "Currency",
+                        "name": "currency",
+                        "type": "string",
+                        "optional": false
+                      },
+                      {
+                        "control_type": "number",
+                        "label": "Total Amount",
+                        "parse_output": "float_conversion",
+                        "name": "total_amount",
+                        "type": "number",
+                        "optional": false
+                      },
+                      {
+                        "control_type": "number",
+                        "label": "Transaction Count",
+                        "parse_output": "float_conversion",
+                        "name": "transaction_count",
+                        "type": "number",
+                        "optional": false
+                      },
+                      {
+                        "control_type": "text",
+                        "label": "KeyId",
+                        "name": "key_id",
+                        "type": "string",
+                        "optional": false
+                      },
+                      {
+                        "control_type": "text",
+                        "label": "Year Month",
+                        "name": "year_month",
+                        "type": "string",
+                        "optional": false
+                      }
+                    ],
+                    "type": "object"
+                  }
+                ],
+                "uuid": "178edb54-1ba6-4cab-a514-e257f2d5dfcc",
+                "title": "Add items to BQ_Records list",
+                "description": "Add <span class=\"provider\">items</span> to <span class=\"provider\">BQ_Records</span> list"
+              },
+              {
+                "number": 10,
+                "provider": "workato_variable",
+                "name": "update_variables",
+                "as": "4b806aa9",
+                "keyword": "action",
+                "dynamicPickListSelection": {
+                  "name": [
+                    {
+                      "label": "Record Count (step 6)",
+                      "value": "876052ce-f1ea-4a2b-ad2b-cb2ab4988d1f:cb78cfa9:record_count"
+                    }
+                  ]
+                },
+                "input": {
+                  "name": "876052ce-f1ea-4a2b-ad2b-cb2ab4988d1f:cb78cfa9:record_count",
+                  "record_count": "=_dp('{\"pill_type\":\"output\",\"provider\":\"workato_variable\",\"line\":\"cb78cfa9\",\"path\":[\"record_count\"]}').to_i + 1"
+                },
+                "extended_input_schema": [
+                  {
+                    "control_type": "integer",
+                    "hint": "Provide a value for the variable. When the value is not supplied, the variable is not updated.<br>To clear the value, set the value to <b>nil</b> in formula mode.",
+                    "label": "record_count",
+                    "name": "record_count",
+                    "optional": true,
+                    "parse_output": "integer_conversion",
+                    "sticky": true,
+                    "type": "integer",
+                    "strip_interpolation": true
+                  }
+                ],
+                "uuid": "40cd17e1-37a3-4a5c-aa3b-a6844a38fd43",
+                "title": null,
+                "description": "Update variables <span class=\"provider\">record_count</span>"
+              },
+              {
+                "number": 11,
+                "keyword": "if",
+                "input": {
+                  "type": "compound",
+                  "operand": "or",
+                  "conditions": [
+                    {
+                      "operand": "equals_to",
+                      "lhs": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"workato_variable\",\"line\":\"cb78cfa9\",\"path\":[\"record_count\"]}')}",
+                      "rhs": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"workato_variable\",\"line\":\"23ab618c\",\"path\":[\"batch_size\"]}')}",
+                      "uuid": "condition-90dd421d-c7a0-400f-9487-77b394091fed"
+                    },
+                    {
+                      "operand": "is_true",
+                      "lhs": "#{_dp('{\"pill_type\":\"foreach_meta\",\"provider\":\"foreach\",\"line\":\"3e9f8949\",\"key\":\"is_last\"}')}",
+                      "rhs": "",
+                      "uuid": "condition-b29c21a2-936f-4d41-902d-d30bf1435a5d"
+                    }
+                  ]
+                },
+                "block": [
+                  {
+                    "number": 12,
+                    "provider": "salesforce",
+                    "name": "upsert_composite_sobject",
+                    "as": "63413a16",
+                    "keyword": "action",
+                    "dynamicPickListSelection": {
+                      "sobject_name": "Stripe Payment",
+                      "key": "Upsert Key Id"
+                    },
+                    "toggleCfg": {
+                      "advanced_configuration.allOrNone": true,
+                      "records.CurrencyIsoCode": false
+                    },
+                    "input": {
+                      "batch_size": "200",
+                      "sobject_name": "Stripe_Payment__c",
+                      "records": {
+                        "attributes": {
+                          "Stripe_Payment__c": "Stripe_Payment__c"
+                        },
+                        "____source": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"workato_variable\",\"line\":\"1edf6d8d\",\"path\":[\"list_items\"]}')}",
+                        "AccountId__c": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"workato_variable\",\"line\":\"1edf6d8d\",\"path\":[\"list_items\",{\"path_element_type\":\"current_item\"},\"account_id\"]}')}",
+                        "Month__c": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"workato_variable\",\"line\":\"1edf6d8d\",\"path\":[\"list_items\",{\"path_element_type\":\"current_item\"},\"first_day_of_month\"]}')}",
+                        "Total_Amount__c": "=_dp('{\"pill_type\":\"output\",\"provider\":\"workato_variable\",\"line\":\"1edf6d8d\",\"path\":[\"list_items\",{\"path_element_type\":\"current_item\"},\"total_amount\"]}').to_f/100",
+                        "Transaction_Count__c": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"workato_variable\",\"line\":\"1edf6d8d\",\"path\":[\"list_items\",{\"path_element_type\":\"current_item\"},\"transaction_count\"]}')}",
+                        "CurrencyIsoCode": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"workato_variable\",\"line\":\"1edf6d8d\",\"path\":[\"list_items\",{\"path_element_type\":\"current_item\"},\"currency\"]}')}",
+                        "Upsert_Key_Id__c": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"workato_variable\",\"line\":\"1edf6d8d\",\"path\":[\"list_items\",{\"path_element_type\":\"current_item\"},\"key_id\"]}')}"
+                      },
+                      "advanced_configuration": {
+                        "allOrNone": "false"
+                      },
+                      "key": "Upsert_Key_Id__c"
+                    },
+                    "extended_output_schema": [
+                      {
+                        "label": "Success records",
+                        "name": "successRecords",
+                        "of": "object",
+                        "properties": [
+                          {
+                            "control_type": "text",
+                            "label": "Input ID",
+                            "type": "string",
+                            "name": "Id"
+                          },
+                          {
+                            "control_type": "text",
+                            "label": "Salesforce ID",
+                            "type": "string",
+                            "name": "id"
+                          },
+                          {
+                            "control_type": "text",
+                            "label": "Created By ID",
+                            "optional": true,
+                            "custom": false,
+                            "sfdc_createable": true,
+                            "sfdc_updateable": false,
+                            "type": "string",
+                            "name": "CreatedById"
+                          },
+                          {
+                            "control_type": "date_time",
+                            "label": "Created Date",
+                            "render_input": "render_iso8601_timestamp",
+                            "parse_output": "parse_iso8601_timestamp",
+                            "optional": true,
+                            "custom": false,
+                            "sfdc_createable": true,
+                            "sfdc_updateable": false,
+                            "type": "date_time",
+                            "name": "CreatedDate"
+                          },
+                          {
+                            "control_type": "select",
+                            "label": "Currency ISO Code",
+                            "pick_list": "sobject_field_values_list",
+                            "pick_list_params": {
+                              "sobject_name": "\"Stripe_Payment__c\"",
+                              "field_name": "\"CurrencyIsoCode\""
+                            },
+                            "toggle_hint": "Select from list",
+                            "toggle_field": {
+                              "control_type": "text",
+                              "label": "Currency ISO Code",
+                              "toggle_hint": "Enter custom value",
+                              "optional": true,
+                              "custom": false,
+                              "sfdc_createable": true,
+                              "sfdc_updateable": true,
+                              "type": "string",
+                              "name": "CurrencyIsoCode"
+                            },
+                            "optional": true,
+                            "custom": false,
+                            "sfdc_createable": true,
+                            "sfdc_updateable": true,
+                            "type": "string",
+                            "name": "CurrencyIsoCode"
+                          },
+                          {
+                            "control_type": "text",
+                            "label": "Last Modified By ID",
+                            "optional": true,
+                            "custom": false,
+                            "sfdc_createable": true,
+                            "sfdc_updateable": false,
+                            "type": "string",
+                            "name": "LastModifiedById"
+                          },
+                          {
+                            "control_type": "date_time",
+                            "label": "Last Modified Date",
+                            "render_input": "render_iso8601_timestamp",
+                            "parse_output": "parse_iso8601_timestamp",
+                            "optional": true,
+                            "custom": false,
+                            "sfdc_createable": true,
+                            "sfdc_updateable": false,
+                            "type": "date_time",
+                            "name": "LastModifiedDate"
+                          },
+                          {
+                            "control_type": "text",
+                            "label": "AccountId",
+                            "custom": true,
+                            "sfdc_createable": true,
+                            "sfdc_updateable": false,
+                            "type": "string",
+                            "name": "AccountId__c"
+                          },
+                          {
+                            "control_type": "text",
+                            "label": "Customer Success Manager",
+                            "optional": true,
+                            "custom": true,
+                            "hint": "The selected CSM on the account when the record was created.",
+                            "sfdc_createable": true,
+                            "sfdc_updateable": true,
+                            "type": "string",
+                            "name": "Customer_Success_Manager__c"
+                          },
+                          {
+                            "control_type": "date",
+                            "label": "Month",
+                            "render_input": "render_iso8601_date",
+                            "parse_output": "parse_iso8601_date",
+                            "custom": true,
+                            "sfdc_createable": true,
+                            "sfdc_updateable": true,
+                            "type": "date_time",
+                            "name": "Month__c"
+                          },
+                          {
+                            "control_type": "number",
+                            "label": "Total Amount",
+                            "parse_output": "float_conversion",
+                            "custom": true,
+                            "sfdc_createable": true,
+                            "sfdc_updateable": true,
+                            "type": "number",
+                            "name": "Total_Amount__c"
+                          },
+                          {
+                            "control_type": "number",
+                            "label": "Transaction Count",
+                            "parse_output": "float_conversion",
+                            "custom": true,
+                            "sfdc_createable": true,
+                            "sfdc_updateable": true,
+                            "type": "number",
+                            "name": "Transaction_Count__c"
+                          },
+                          {
+                            "control_type": "text",
+                            "label": "Upsert Key Id",
+                            "optional": true,
+                            "custom": true,
+                            "sfdc_createable": true,
+                            "sfdc_updateable": true,
+                            "type": "string",
+                            "name": "Upsert_Key_Id__c"
+                          },
+                          {
+                            "control_type": "checkbox",
+                            "label": "Success",
+                            "render_input": {},
+                            "parse_output": {},
+                            "toggle_hint": "Select from option list",
+                            "toggle_field": {
+                              "label": "Success",
+                              "control_type": "text",
+                              "toggle_hint": "Use custom value",
+                              "type": "boolean",
+                              "name": "success"
+                            },
+                            "type": "boolean",
+                            "name": "success"
+                          }
+                        ],
+                        "type": "array"
+                      },
+                      {
+                        "label": "Failed records",
+                        "name": "failedRecords",
+                        "of": "object",
+                        "properties": [
+                          {
+                            "control_type": "text",
+                            "label": "Input ID",
+                            "type": "string",
+                            "name": "Id"
+                          },
+                          {
+                            "control_type": "text",
+                            "label": "Salesforce ID",
+                            "type": "string",
+                            "name": "id"
+                          },
+                          {
+                            "control_type": "text",
+                            "label": "Created By ID",
+                            "optional": true,
+                            "custom": false,
+                            "sfdc_createable": true,
+                            "sfdc_updateable": false,
+                            "type": "string",
+                            "name": "CreatedById"
+                          },
+                          {
+                            "control_type": "date_time",
+                            "label": "Created Date",
+                            "render_input": "render_iso8601_timestamp",
+                            "parse_output": "parse_iso8601_timestamp",
+                            "optional": true,
+                            "custom": false,
+                            "sfdc_createable": true,
+                            "sfdc_updateable": false,
+                            "type": "date_time",
+                            "name": "CreatedDate"
+                          },
+                          {
+                            "control_type": "select",
+                            "label": "Currency ISO Code",
+                            "pick_list": "sobject_field_values_list",
+                            "pick_list_params": {
+                              "sobject_name": "\"Stripe_Payment__c\"",
+                              "field_name": "\"CurrencyIsoCode\""
+                            },
+                            "toggle_hint": "Select from list",
+                            "toggle_field": {
+                              "control_type": "text",
+                              "label": "Currency ISO Code",
+                              "toggle_hint": "Enter custom value",
+                              "optional": true,
+                              "custom": false,
+                              "sfdc_createable": true,
+                              "sfdc_updateable": true,
+                              "type": "string",
+                              "name": "CurrencyIsoCode"
+                            },
+                            "optional": true,
+                            "custom": false,
+                            "sfdc_createable": true,
+                            "sfdc_updateable": true,
+                            "type": "string",
+                            "name": "CurrencyIsoCode"
+                          },
+                          {
+                            "control_type": "text",
+                            "label": "Last Modified By ID",
+                            "optional": true,
+                            "custom": false,
+                            "sfdc_createable": true,
+                            "sfdc_updateable": false,
+                            "type": "string",
+                            "name": "LastModifiedById"
+                          },
+                          {
+                            "control_type": "date_time",
+                            "label": "Last Modified Date",
+                            "render_input": "render_iso8601_timestamp",
+                            "parse_output": "parse_iso8601_timestamp",
+                            "optional": true,
+                            "custom": false,
+                            "sfdc_createable": true,
+                            "sfdc_updateable": false,
+                            "type": "date_time",
+                            "name": "LastModifiedDate"
+                          },
+                          {
+                            "control_type": "text",
+                            "label": "AccountId",
+                            "custom": true,
+                            "sfdc_createable": true,
+                            "sfdc_updateable": false,
+                            "type": "string",
+                            "name": "AccountId__c"
+                          },
+                          {
+                            "control_type": "text",
+                            "label": "Customer Success Manager",
+                            "optional": true,
+                            "custom": true,
+                            "hint": "The selected CSM on the account when the record was created.",
+                            "sfdc_createable": true,
+                            "sfdc_updateable": true,
+                            "type": "string",
+                            "name": "Customer_Success_Manager__c"
+                          },
+                          {
+                            "control_type": "date",
+                            "label": "Month",
+                            "render_input": "render_iso8601_date",
+                            "parse_output": "parse_iso8601_date",
+                            "custom": true,
+                            "sfdc_createable": true,
+                            "sfdc_updateable": true,
+                            "type": "date_time",
+                            "name": "Month__c"
+                          },
+                          {
+                            "control_type": "number",
+                            "label": "Total Amount",
+                            "parse_output": "float_conversion",
+                            "custom": true,
+                            "sfdc_createable": true,
+                            "sfdc_updateable": true,
+                            "type": "number",
+                            "name": "Total_Amount__c"
+                          },
+                          {
+                            "control_type": "number",
+                            "label": "Transaction Count",
+                            "parse_output": "float_conversion",
+                            "custom": true,
+                            "sfdc_createable": true,
+                            "sfdc_updateable": true,
+                            "type": "number",
+                            "name": "Transaction_Count__c"
+                          },
+                          {
+                            "control_type": "text",
+                            "label": "Upsert Key Id",
+                            "optional": true,
+                            "custom": true,
+                            "sfdc_createable": true,
+                            "sfdc_updateable": true,
+                            "type": "string",
+                            "name": "Upsert_Key_Id__c"
+                          },
+                          {
+                            "control_type": "checkbox",
+                            "label": "Success",
+                            "render_input": {},
+                            "parse_output": {},
+                            "toggle_hint": "Select from option list",
+                            "toggle_field": {
+                              "label": "Success",
+                              "control_type": "text",
+                              "toggle_hint": "Use custom value",
+                              "type": "boolean",
+                              "name": "success"
+                            },
+                            "type": "boolean",
+                            "name": "success"
+                          },
+                          {
+                            "name": "errors",
+                            "type": "array",
+                            "of": "object",
+                            "label": "Errors",
+                            "properties": [
+                              {
+                                "control_type": "text",
+                                "label": "Status code",
+                                "type": "string",
+                                "name": "statusCode"
+                              },
+                              {
+                                "control_type": "text",
+                                "label": "Message",
+                                "type": "string",
+                                "name": "message"
+                              },
+                              {
+                                "name": "fields",
+                                "type": "array",
+                                "of": "string",
+                                "label": "Fields"
+                              }
+                            ]
+                          }
+                        ],
+                        "type": "array"
+                      }
+                    ],
+                    "extended_input_schema": [
+                      {
+                        "label": "Stripe payments",
+                        "name": "records",
+                        "of": "object",
+                        "properties": [
+                          {
+                            "properties": [
+                              {
+                                "control_type": "text",
+                                "label": "Stripe payment c",
+                                "ngIf": "false",
+                                "optional": true,
+                                "default": "Stripe_Payment__c",
+                                "type": "string",
+                                "name": "Stripe_Payment__c"
+                              }
+                            ],
+                            "label": "Attributes",
+                            "ngIf": "false",
+                            "render_input": "set_attribute",
+                            "type": "object",
+                            "name": "attributes"
+                          },
+                          {
+                            "control_type": "text",
+                            "label": "Created By ID",
+                            "optional": true,
+                            "custom": false,
+                            "sfdc_createable": true,
+                            "sfdc_updateable": false,
+                            "type": "string",
+                            "name": "CreatedById"
+                          },
+                          {
+                            "control_type": "date_time",
+                            "label": "Created Date",
+                            "render_input": "render_iso8601_timestamp",
+                            "parse_output": "parse_iso8601_timestamp",
+                            "optional": true,
+                            "custom": false,
+                            "sfdc_createable": true,
+                            "sfdc_updateable": false,
+                            "type": "date_time",
+                            "name": "CreatedDate"
+                          },
+                          {
+                            "control_type": "select",
+                            "label": "Currency ISO Code",
+                            "pick_list": "sobject_field_values_list",
+                            "pick_list_params": {
+                              "sobject_name": "\"Stripe_Payment__c\"",
+                              "field_name": "\"CurrencyIsoCode\""
+                            },
+                            "toggle_hint": "Select from list",
+                            "toggle_field": {
+                              "control_type": "text",
+                              "label": "Currency ISO Code",
+                              "toggle_hint": "Enter custom value",
+                              "optional": true,
+                              "custom": false,
+                              "sfdc_createable": true,
+                              "sfdc_updateable": true,
+                              "type": "string",
+                              "name": "CurrencyIsoCode"
+                            },
+                            "optional": true,
+                            "custom": false,
+                            "sfdc_createable": true,
+                            "sfdc_updateable": true,
+                            "type": "string",
+                            "name": "CurrencyIsoCode"
+                          },
+                          {
+                            "control_type": "text",
+                            "label": "Last Modified By ID",
+                            "optional": true,
+                            "custom": false,
+                            "sfdc_createable": true,
+                            "sfdc_updateable": false,
+                            "type": "string",
+                            "name": "LastModifiedById"
+                          },
+                          {
+                            "control_type": "date_time",
+                            "label": "Last Modified Date",
+                            "render_input": "render_iso8601_timestamp",
+                            "parse_output": "parse_iso8601_timestamp",
+                            "optional": true,
+                            "custom": false,
+                            "sfdc_createable": true,
+                            "sfdc_updateable": false,
+                            "type": "date_time",
+                            "name": "LastModifiedDate"
+                          },
+                          {
+                            "control_type": "text",
+                            "label": "AccountId",
+                            "custom": true,
+                            "sfdc_createable": true,
+                            "sfdc_updateable": false,
+                            "optional": true,
+                            "type": "string",
+                            "name": "AccountId__c"
+                          },
+                          {
+                            "control_type": "text",
+                            "label": "Customer Success Manager",
+                            "optional": true,
+                            "custom": true,
+                            "hint": "The selected CSM on the account when the record was created.",
+                            "sfdc_createable": true,
+                            "sfdc_updateable": true,
+                            "type": "string",
+                            "name": "Customer_Success_Manager__c"
+                          },
+                          {
+                            "control_type": "date",
+                            "label": "Month",
+                            "render_input": "render_iso8601_date",
+                            "parse_output": "parse_iso8601_date",
+                            "custom": true,
+                            "sfdc_createable": true,
+                            "sfdc_updateable": true,
+                            "optional": true,
+                            "type": "date_time",
+                            "name": "Month__c"
+                          },
+                          {
+                            "control_type": "number",
+                            "label": "Total Amount",
+                            "parse_output": "float_conversion",
+                            "custom": true,
+                            "sfdc_createable": true,
+                            "sfdc_updateable": true,
+                            "optional": true,
+                            "type": "number",
+                            "name": "Total_Amount__c"
+                          },
+                          {
+                            "control_type": "number",
+                            "label": "Transaction Count",
+                            "parse_output": "float_conversion",
+                            "custom": true,
+                            "sfdc_createable": true,
+                            "sfdc_updateable": true,
+                            "optional": true,
+                            "type": "number",
+                            "name": "Transaction_Count__c"
+                          },
+                          {
+                            "control_type": "text",
+                            "label": "Upsert Key Id",
+                            "optional": false,
+                            "custom": true,
+                            "sfdc_createable": true,
+                            "sfdc_updateable": true,
+                            "type": "string",
+                            "name": "Upsert_Key_Id__c"
+                          }
+                        ],
+                        "type": "array"
+                      },
+                      {
+                        "label": "Advanced configuration",
+                        "name": "advanced_configuration",
+                        "optional": true,
+                        "properties": [
+                          {
+                            "control_type": "checkbox",
+                            "label": "Roll back records when errors occur?",
+                            "render_input": {},
+                            "parse_output": {},
+                            "toggle_hint": "Select from option list",
+                            "toggle_field": {
+                              "label": "Roll back records when errors occur?",
+                              "control_type": "text",
+                              "toggle_hint": "Use custom value",
+                              "default": false,
+                              "optional": true,
+                              "hint": "                        When <b>Yes</b>, the batch is rolled back when the upsert of an object fails.\n                        If the batch is larger than 200 records, only the\n                        <a href=\"https://docs.workato.com/connectors/salesforce/batch-operations.html#advanced-configuration\" target=_blank>affected batch</a>\n                        is rolled back. The default, <b>No</b>, is recommended.\n",
+                              "type": "boolean",
+                              "name": "allOrNone"
+                            },
+                            "default": "false",
+                            "optional": true,
+                            "hint": "                        When <b>Yes</b>, the batch is rolled back when the upsert of an object fails.\n                        If the batch is larger than 200 records, only the\n                        <a href=\"https://docs.workato.com/connectors/salesforce/batch-operations.html#advanced-configuration\" target=_blank>affected batch</a>\n                        is rolled back. The default, <b>No</b>, is recommended.\n",
+                            "type": "boolean",
+                            "name": "allOrNone"
+                          }
+                        ],
+                        "type": "object"
+                      }
+                    ],
+                    "uuid": "510d21a2-8279-4cab-ad2a-f8ae21803727",
+                    "title": "Upsert Stripe Payments in batches",
+                    "description": "Upsert <span class=\"provider\">Stripe Payments</span> in batches in <span class=\"provider\">Salesforce</span>"
+                  },
+                  {
+                    "number": 13,
+                    "as": "d37535f0",
+                    "keyword": "foreach",
+                    "repeat_mode": "simple",
+                    "clear_scope": "false",
+                    "input": {},
+                    "block": [
+                      {
+                        "number": 14,
+                        "provider": "lookup_table",
+                        "name": "search_entries",
+                        "as": "62760cf7",
+                        "keyword": "action",
+                        "dynamicPickListSelection": {
+                          "lookup_table_id": "PROD_StripePayments_BigQuery"
+                        },
+                        "input": {
+                          "lookup_table_id": "3208207",
+                          "parameters": {
+                            "col5": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"foreach\",\"line\":\"d37535f0\",\"path\":[\"AccountId__c\"]}')}_#{_dp('{\"pill_type\":\"output\",\"provider\":\"foreach\",\"line\":\"d37535f0\",\"path\":[\"Month__c\"]}')}"
+                          }
+                        },
+                        "extended_output_schema": [
+                          {
+                            "label": "Entries",
+                            "name": "entries",
+                            "of": "object",
+                            "properties": [
+                              {
+                                "control_type": "number",
+                                "label": "Entry ID",
+                                "parse_output": "integer_conversion",
+                                "type": "integer",
+                                "name": "id"
+                              },
+                              {
+                                "properties": [
+                                  {
+                                    "control_type": "text",
+                                    "label": "Records",
+                                    "name": "col1",
+                                    "type": "string",
+                                    "sticky": true
+                                  },
+                                  {
+                                    "control_type": "text",
+                                    "label": "Processed?",
+                                    "name": "col2",
+                                    "type": "string",
+                                    "sticky": true
+                                  },
+                                  {
+                                    "control_type": "text",
+                                    "label": "Status",
+                                    "name": "col3",
+                                    "type": "string",
+                                    "sticky": true
+                                  },
+                                  {
+                                    "control_type": "text",
+                                    "label": "Message",
+                                    "name": "col4",
+                                    "type": "string",
+                                    "sticky": true
+                                  },
+                                  {
+                                    "control_type": "text",
+                                    "label": "KeyId",
+                                    "name": "col5",
+                                    "type": "string",
+                                    "sticky": true
+                                  }
+                                ],
+                                "label": "Entry",
+                                "type": "object",
+                                "name": "entry"
+                              }
+                            ],
+                            "type": "array"
+                          }
+                        ],
+                        "extended_input_schema": [
+                          {
+                            "hint": "Provide one or more entry fields to search the entry",
+                            "label": "Search by",
+                            "name": "parameters",
+                            "properties": [
+                              {
+                                "control_type": "text",
+                                "label": "Records",
+                                "name": "col1",
+                                "type": "string",
+                                "sticky": true,
+                                "optional": true
+                              },
+                              {
+                                "control_type": "text",
+                                "label": "Processed?",
+                                "name": "col2",
+                                "type": "string",
+                                "sticky": true,
+                                "optional": true
+                              },
+                              {
+                                "control_type": "text",
+                                "label": "Status",
+                                "name": "col3",
+                                "type": "string",
+                                "sticky": true,
+                                "optional": true
+                              },
+                              {
+                                "control_type": "text",
+                                "label": "Message",
+                                "name": "col4",
+                                "type": "string",
+                                "sticky": true,
+                                "optional": true
+                              },
+                              {
+                                "control_type": "text",
+                                "label": "KeyId",
+                                "name": "col5",
+                                "type": "string",
+                                "sticky": true,
+                                "optional": true
+                              }
+                            ],
+                            "type": "object"
+                          }
+                        ],
+                        "visible_config_fields": [
+                          "lookup_table_id",
+                          "parameters.col6",
+                          "parameters.col1",
+                          "parameters"
+                        ],
+                        "hidden_config_fields": [
+                          "parameters.col2",
+                          "parameters.col3",
+                          "parameters.col4"
+                        ],
+                        "uuid": "77b1aaa9-bba1-48ab-990e-0030a236dfd7",
+                        "skip": false,
+                        "title": null,
+                        "description": "Search <span class=\"provider\">entries</span> in <span class=\"provider\">PROD_StripePayments_BigQuery</span> lookup table"
+                      },
+                      {
+                        "number": 15,
+                        "provider": "lookup_table",
+                        "name": "update_entry",
+                        "as": "c2cbcc46",
+                        "keyword": "action",
+                        "dynamicPickListSelection": {
+                          "lookup_table_id": "PROD_StripePayments_BigQuery"
+                        },
+                        "toggleCfg": {
+                          "ignore_not_found": true
+                        },
+                        "input": {
+                          "ignore_not_found": "false",
+                          "lookup_table_id": "3208207",
+                          "id": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"lookup_table\",\"line\":\"62760cf7\",\"path\":[\"entries\",{\"path_element_type\":\"current_item\"},\"id\"]}')}",
+                          "parameters": {
+                            "col2": "true",
+                            "col4": "Record successfully inserted."
+                          }
+                        },
+                        "extended_output_schema": [
+                          {
+                            "control_type": "number",
+                            "label": "Entry ID",
+                            "name": "id",
+                            "parse_output": "integer_conversion",
+                            "type": "integer"
+                          },
+                          {
+                            "label": "Entry",
+                            "name": "entry",
+                            "properties": [
+                              {
+                                "control_type": "text",
+                                "label": "Records",
+                                "name": "col1",
+                                "type": "string",
+                                "sticky": true
+                              },
+                              {
+                                "control_type": "text",
+                                "label": "Processed?",
+                                "name": "col2",
+                                "type": "string",
+                                "sticky": true
+                              },
+                              {
+                                "control_type": "text",
+                                "label": "Status",
+                                "name": "col3",
+                                "type": "string",
+                                "sticky": true
+                              },
+                              {
+                                "control_type": "text",
+                                "label": "Message",
+                                "name": "col4",
+                                "type": "string",
+                                "sticky": true
+                              },
+                              {
+                                "control_type": "text",
+                                "label": "KeyId",
+                                "name": "col5",
+                                "type": "string",
+                                "sticky": true
+                              }
+                            ],
+                            "type": "object"
+                          }
+                        ],
+                        "extended_input_schema": [
+                          {
+                            "hint": "Fill the fields you want to update",
+                            "label": "Entry fields",
+                            "name": "parameters",
+                            "properties": [
+                              {
+                                "control_type": "text",
+                                "label": "Records",
+                                "name": "col1",
+                                "type": "string",
+                                "sticky": true,
+                                "optional": true
+                              },
+                              {
+                                "control_type": "text",
+                                "label": "Processed?",
+                                "name": "col2",
+                                "type": "string",
+                                "sticky": true,
+                                "optional": true
+                              },
+                              {
+                                "control_type": "text",
+                                "label": "Status",
+                                "name": "col3",
+                                "type": "string",
+                                "sticky": true,
+                                "optional": true
+                              },
+                              {
+                                "control_type": "text",
+                                "label": "Message",
+                                "name": "col4",
+                                "type": "string",
+                                "sticky": true,
+                                "optional": true
+                              },
+                              {
+                                "control_type": "text",
+                                "label": "KeyId",
+                                "name": "col5",
+                                "type": "string",
+                                "sticky": true,
+                                "optional": true
+                              }
+                            ],
+                            "type": "object"
+                          }
+                        ],
+                        "visible_config_fields": [
+                          "lookup_table_id",
+                          "ignore_not_found",
+                          "parameters.col2",
+                          "parameters.col3",
+                          "parameters.col4",
+                          "parameters.col5"
+                        ],
+                        "hidden_config_fields": [
+                          "parameters.col1",
+                          "parameters.col6"
+                        ],
+                        "uuid": "e268ef8b-31b5-4878-bed6-b10d65b3b7a9",
+                        "skip": false,
+                        "title": null,
+                        "description": "Update <span class=\"provider\">an entry</span> in <span class=\"provider\">PROD_StripePayments_BigQuery</span> lookup table"
+                      },
+                      {
+                        "number": 16,
+                        "provider": "workato_variable",
+                        "name": "update_variables",
+                        "as": "0caa12dc",
+                        "keyword": "action",
+                        "dynamicPickListSelection": {
+                          "name": [
+                            {
+                              "label": "success_count (step 5)",
+                              "value": "876052ce-f1ea-4a2b-ad2b-cb2ab4988d1f:cb78cfa9:success_count"
+                            }
+                          ]
+                        },
+                        "input": {
+                          "name": "876052ce-f1ea-4a2b-ad2b-cb2ab4988d1f:cb78cfa9:success_count",
+                          "success_count": "=_dp('{\"pill_type\":\"output\",\"provider\":\"workato_variable\",\"line\":\"cb78cfa9\",\"path\":[\"success_count\"]}').to_i + 1"
+                        },
+                        "extended_input_schema": [
+                          {
+                            "control_type": "integer",
+                            "hint": "Provide a value for the variable. When the value is not supplied, the variable is not updated.<br>To clear the value, set the value to <b>nil</b> in formula mode.",
+                            "label": "success_count",
+                            "name": "success_count",
+                            "optional": true,
+                            "parse_output": "integer_conversion",
+                            "sticky": true,
+                            "type": "integer",
+                            "strip_interpolation": true
+                          }
+                        ],
+                        "uuid": "f7edcf7c-e09e-4968-af89-819d90c8b349",
+                        "skip": false,
+                        "title": null,
+                        "description": "Update variables <span class=\"provider\">success_count</span>"
+                      }
+                    ],
+                    "source": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"salesforce\",\"line\":\"63413a16\",\"path\":[\"successRecords\"]}')}",
+                    "uuid": "bc3ae2bf-514c-43c1-b04b-112ad459f090",
+                    "skip": false
+                  },
+                  {
+                    "number": 17,
+                    "as": "ab239d35",
+                    "keyword": "foreach",
+                    "repeat_mode": "simple",
+                    "clear_scope": "false",
+                    "input": {},
+                    "block": [
+                      {
+                        "number": 18,
+                        "keyword": "try",
+                        "input": {},
+                        "block": [
+                          {
+                            "number": 19,
+                            "provider": "lookup_table",
+                            "name": "search_entries",
+                            "as": "c2bd07dd",
+                            "keyword": "action",
+                            "dynamicPickListSelection": {
+                              "lookup_table_id": "PROD_StripePayments_BigQuery"
+                            },
+                            "input": {
+                              "lookup_table_id": "3208207",
+                              "parameters": {
+                                "col5": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"foreach\",\"line\":\"ab239d35\",\"path\":[\"AccountId__c\"]}')}_#{_dp('{\"pill_type\":\"output\",\"provider\":\"foreach\",\"line\":\"ab239d35\",\"path\":[\"Month__c\"]}')}"
+                              }
+                            },
+                            "extended_output_schema": [
+                              {
+                                "label": "Entries",
+                                "name": "entries",
+                                "of": "object",
+                                "properties": [
+                                  {
+                                    "control_type": "number",
+                                    "label": "Entry ID",
+                                    "parse_output": "integer_conversion",
+                                    "type": "integer",
+                                    "name": "id"
+                                  },
+                                  {
+                                    "properties": [
+                                      {
+                                        "control_type": "text",
+                                        "label": "Records",
+                                        "name": "col1",
+                                        "type": "string",
+                                        "sticky": true
+                                      },
+                                      {
+                                        "control_type": "text",
+                                        "label": "Processed?",
+                                        "name": "col2",
+                                        "type": "string",
+                                        "sticky": true
+                                      },
+                                      {
+                                        "control_type": "text",
+                                        "label": "Status",
+                                        "name": "col3",
+                                        "type": "string",
+                                        "sticky": true
+                                      },
+                                      {
+                                        "control_type": "text",
+                                        "label": "Message",
+                                        "name": "col4",
+                                        "type": "string",
+                                        "sticky": true
+                                      },
+                                      {
+                                        "control_type": "text",
+                                        "label": "KeyId",
+                                        "name": "col5",
+                                        "type": "string",
+                                        "sticky": true
+                                      }
+                                    ],
+                                    "label": "Entry",
+                                    "type": "object",
+                                    "name": "entry"
+                                  }
+                                ],
+                                "type": "array"
+                              }
+                            ],
+                            "extended_input_schema": [
+                              {
+                                "hint": "Provide one or more entry fields to search the entry",
+                                "label": "Search by",
+                                "name": "parameters",
+                                "properties": [
+                                  {
+                                    "control_type": "text",
+                                    "label": "Records",
+                                    "name": "col1",
+                                    "type": "string",
+                                    "sticky": true,
+                                    "optional": true
+                                  },
+                                  {
+                                    "control_type": "text",
+                                    "label": "Processed?",
+                                    "name": "col2",
+                                    "type": "string",
+                                    "sticky": true,
+                                    "optional": true
+                                  },
+                                  {
+                                    "control_type": "text",
+                                    "label": "Status",
+                                    "name": "col3",
+                                    "type": "string",
+                                    "sticky": true,
+                                    "optional": true
+                                  },
+                                  {
+                                    "control_type": "text",
+                                    "label": "Message",
+                                    "name": "col4",
+                                    "type": "string",
+                                    "sticky": true,
+                                    "optional": true
+                                  },
+                                  {
+                                    "control_type": "text",
+                                    "label": "KeyId",
+                                    "name": "col5",
+                                    "type": "string",
+                                    "sticky": true,
+                                    "optional": true
+                                  }
+                                ],
+                                "type": "object"
+                              }
+                            ],
+                            "visible_config_fields": [
+                              "lookup_table_id",
+                              "parameters.col6",
+                              "parameters.col5",
+                              "parameters"
+                            ],
+                            "hidden_config_fields": [
+                              "parameters.col1",
+                              "parameters.col2",
+                              "parameters.col3",
+                              "parameters.col4"
+                            ],
+                            "uuid": "a4e6c372-097b-44e5-aa37-46c7f56c0531",
+                            "skip": false,
+                            "title": null,
+                            "description": "Search <span class=\"provider\">entries</span> in <span class=\"provider\">PROD_StripePayments_BigQuery</span> lookup table"
+                          },
+                          {
+                            "number": 20,
+                            "provider": "lookup_table",
+                            "name": "update_entry",
+                            "as": "bc26afd3",
+                            "keyword": "action",
+                            "dynamicPickListSelection": {
+                              "lookup_table_id": "PROD_StripePayments_BigQuery"
+                            },
+                            "toggleCfg": {
+                              "ignore_not_found": true
+                            },
+                            "input": {
+                              "ignore_not_found": "false",
+                              "lookup_table_id": "3208207",
+                              "id": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"lookup_table\",\"line\":\"c2bd07dd\",\"path\":[\"entries\",{\"path_element_type\":\"current_item\"},\"id\"]}')}",
+                              "parameters": {
+                                "col2": "true",
+                                "col4": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"foreach\",\"line\":\"ab239d35\",\"path\":[\"errors\",{\"path_element_type\":\"current_item\"},\"statusCode\"]}')}, #{_dp('{\"pill_type\":\"output\",\"provider\":\"foreach\",\"line\":\"ab239d35\",\"path\":[\"errors\",{\"path_element_type\":\"current_item\"},\"message\"]}')}, #{_dp('{\"pill_type\":\"output\",\"provider\":\"foreach\",\"line\":\"ab239d35\",\"path\":[\"errors\",{\"path_element_type\":\"current_item\"},\"fields\"]}')}",
+                                "col3": "Failed to insert."
+                              }
+                            },
+                            "extended_output_schema": [
+                              {
+                                "control_type": "number",
+                                "label": "Entry ID",
+                                "name": "id",
+                                "parse_output": "integer_conversion",
+                                "type": "integer"
+                              },
+                              {
+                                "label": "Entry",
+                                "name": "entry",
+                                "properties": [
+                                  {
+                                    "control_type": "text",
+                                    "label": "Records",
+                                    "name": "col1",
+                                    "type": "string",
+                                    "sticky": true
+                                  },
+                                  {
+                                    "control_type": "text",
+                                    "label": "Processed?",
+                                    "name": "col2",
+                                    "type": "string",
+                                    "sticky": true
+                                  },
+                                  {
+                                    "control_type": "text",
+                                    "label": "Status",
+                                    "name": "col3",
+                                    "type": "string",
+                                    "sticky": true
+                                  },
+                                  {
+                                    "control_type": "text",
+                                    "label": "Message",
+                                    "name": "col4",
+                                    "type": "string",
+                                    "sticky": true
+                                  },
+                                  {
+                                    "control_type": "text",
+                                    "label": "KeyId",
+                                    "name": "col5",
+                                    "type": "string",
+                                    "sticky": true
+                                  }
+                                ],
+                                "type": "object"
+                              }
+                            ],
+                            "extended_input_schema": [
+                              {
+                                "hint": "Fill the fields you want to update",
+                                "label": "Entry fields",
+                                "name": "parameters",
+                                "properties": [
+                                  {
+                                    "control_type": "text",
+                                    "label": "Records",
+                                    "name": "col1",
+                                    "type": "string",
+                                    "sticky": true,
+                                    "optional": true
+                                  },
+                                  {
+                                    "control_type": "text",
+                                    "label": "Processed?",
+                                    "name": "col2",
+                                    "type": "string",
+                                    "sticky": true,
+                                    "optional": true
+                                  },
+                                  {
+                                    "control_type": "text",
+                                    "label": "Status",
+                                    "name": "col3",
+                                    "type": "string",
+                                    "sticky": true,
+                                    "optional": true
+                                  },
+                                  {
+                                    "control_type": "text",
+                                    "label": "Message",
+                                    "name": "col4",
+                                    "type": "string",
+                                    "sticky": true,
+                                    "optional": true
+                                  },
+                                  {
+                                    "control_type": "text",
+                                    "label": "KeyId",
+                                    "name": "col5",
+                                    "type": "string",
+                                    "sticky": true,
+                                    "optional": true
+                                  }
+                                ],
+                                "type": "object"
+                              }
+                            ],
+                            "visible_config_fields": [
+                              "lookup_table_id",
+                              "ignore_not_found",
+                              "parameters.col2",
+                              "parameters.col4",
+                              "parameters.col5",
+                              "id",
+                              "parameters",
+                              "parameters.col3"
+                            ],
+                            "hidden_config_fields": [
+                              "parameters.col1"
+                            ],
+                            "uuid": "9eaa5f50-9b46-4601-8e32-ee57bbc3d308",
+                            "skip": false,
+                            "title": null,
+                            "description": "Update <span class=\"provider\">an entry</span> in <span class=\"provider\">PROD_StripePayments_BigQuery</span> lookup table"
+                          },
+                          {
+                            "number": 21,
+                            "provider": "workato_variable",
+                            "name": "insert_to_list",
+                            "as": "11a0812f",
+                            "keyword": "action",
+                            "dynamicPickListSelection": {
+                              "name": "FailedRecords (step 6)"
+                            },
+                            "input": {
+                              "location": "end",
+                              "name": "03ed9c42-95c2-4519-8583-39497921881a:53380a0f",
+                              "list_item": {
+                                "key_id": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"salesforce\",\"line\":\"63413a16\",\"path\":[\"successRecords\",{\"path_element_type\":\"current_item\"},\"AccountId__c\"]}')}_#{_dp('{\"pill_type\":\"output\",\"provider\":\"salesforce\",\"line\":\"63413a16\",\"path\":[\"successRecords\",{\"path_element_type\":\"current_item\"},\"Month__c\"]}')}",
+                                "error": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"foreach\",\"line\":\"ab239d35\",\"path\":[\"errors\",{\"path_element_type\":\"current_item\"},\"statusCode\"]}')}#{_dp('{\"pill_type\":\"output\",\"provider\":\"foreach\",\"line\":\"ab239d35\",\"path\":[\"errors\",{\"path_element_type\":\"current_item\"},\"message\"]}')}"
+                              }
+                            },
+                            "extended_input_schema": [
+                              {
+                                "hint": "",
+                                "label": "List item",
+                                "name": "list_item",
+                                "optional": false,
+                                "properties": [
+                                  {
+                                    "control_type": "text",
+                                    "label": "KeyId",
+                                    "type": "string",
+                                    "name": "key_id",
+                                    "optional": false
+                                  },
+                                  {
+                                    "control_type": "text",
+                                    "label": "Error",
+                                    "name": "error",
+                                    "type": "string",
+                                    "optional": false
+                                  }
+                                ],
+                                "type": "object"
+                              }
+                            ],
+                            "comment": "Add failed records to the list",
+                            "uuid": "6d9bf998-180f-48ce-93fc-44747b89df3d",
+                            "skip": false,
+                            "title": "Add items to FailedRecords list",
+                            "description": "Add <span class=\"provider\">items</span> to <span class=\"provider\">FailedRecords</span> list"
+                          },
+                          {
+                            "number": 22,
+                            "as": "89b1f479",
+                            "keyword": "catch",
+                            "input": {
+                              "max_retry_count": "0",
+                              "retry_interval": "2"
+                            },
+                            "block": [],
+                            "uuid": "144f7eac-0d8b-42e1-858d-04f41360cc87",
+                            "skip": false
+                          }
+                        ],
+                        "uuid": "667c0896-48fa-4484-8ac4-78751abfa623",
+                        "skip": false
+                      }
+                    ],
+                    "source": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"salesforce\",\"line\":\"63413a16\",\"path\":[\"failedRecords\"]}')}",
+                    "uuid": "f75ec452-f12c-4526-95a8-814f1d29565c",
+                    "skip": false
+                  },
+                  {
+                    "number": 23,
+                    "provider": "workato_variable",
+                    "name": "update_variables",
+                    "as": "126c5e78",
+                    "keyword": "action",
+                    "dynamicPickListSelection": {
+                      "name": [
+                        {
+                          "label": "batch_count (step 5)",
+                          "value": "876052ce-f1ea-4a2b-ad2b-cb2ab4988d1f:cb78cfa9:batch_count"
+                        },
+                        {
+                          "label": "record_count (step 5)",
+                          "value": "876052ce-f1ea-4a2b-ad2b-cb2ab4988d1f:cb78cfa9:record_count"
+                        }
+                      ]
+                    },
+                    "input": {
+                      "name": "876052ce-f1ea-4a2b-ad2b-cb2ab4988d1f:cb78cfa9:batch_count\n876052ce-f1ea-4a2b-ad2b-cb2ab4988d1f:cb78cfa9:record_count",
+                      "batch_count": "=_dp('{\"pill_type\":\"output\",\"provider\":\"workato_variable\",\"line\":\"cb78cfa9\",\"path\":[\"batch_count\"]}').to_i + 1",
+                      "record_count": "0"
+                    },
+                    "extended_input_schema": [
+                      {
+                        "control_type": "integer",
+                        "hint": "Provide a value for the variable. When the value is not supplied, the variable is not updated.<br>To clear the value, set the value to <b>nil</b> in formula mode.",
+                        "label": "batch_count",
+                        "name": "batch_count",
+                        "optional": true,
+                        "parse_output": "integer_conversion",
+                        "sticky": true,
+                        "type": "integer",
+                        "strip_interpolation": true
+                      },
+                      {
+                        "control_type": "integer",
+                        "hint": "Provide a value for the variable. When the value is not supplied, the variable is not updated.<br>To clear the value, set the value to <b>nil</b> in formula mode.",
+                        "label": "record_count",
+                        "name": "record_count",
+                        "optional": true,
+                        "parse_output": "integer_conversion",
+                        "sticky": true,
+                        "type": "integer",
+                        "strip_interpolation": true
+                      }
+                    ],
+                    "comment": "batch_count++; record_count = 0",
+                    "uuid": "9377f4b2-dd9c-4875-9138-81c67057a2a6",
+                    "title": null,
+                    "description": "Update variables <span class=\"provider\">batch_count, record_count</span>"
+                  },
+                  {
+                    "number": 24,
+                    "provider": "workato_variable",
+                    "name": "clear_list",
+                    "as": "b8c677a0",
+                    "keyword": "action",
+                    "dynamicPickListSelection": {
+                      "name": "Redshift_Records (step 2)"
+                    },
+                    "input": {
+                      "name": "52fb07d5-bf4d-4e1e-b431-d317dc7fceed:1edf6d8d"
+                    },
+                    "uuid": "f8b4c993-2fcd-465f-b1cd-0c66d6d43f2c",
+                    "title": "Clear all items from BQ_Records list",
+                    "description": "Clear all <span class=\"provider\">items</span> from <span class=\"provider\">BQ_Records</span> list"
+                  }
+                ],
+                "uuid": "973e2c1c-3f05-4238-9371-5f918bb05bb7"
+              },
+              {
+                "number": 25,
+                "as": "5e8d60b9",
+                "keyword": "catch",
+                "input": {
+                  "max_retry_count": "0",
+                  "retry_interval": "2"
+                },
+                "block": [
+                  {
+                    "number": 26,
+                    "provider": "lookup_table",
+                    "name": "update_entry",
+                    "as": "c64e8cf4",
+                    "keyword": "action",
+                    "dynamicPickListSelection": {
+                      "lookup_table_id": "PROD_StripePayments_BigQuery"
+                    },
+                    "toggleCfg": {
+                      "ignore_not_found": true
+                    },
+                    "input": {
+                      "ignore_not_found": "false",
+                      "lookup_table_id": "3208207",
+                      "id": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"foreach\",\"line\":\"3e9f8949\",\"path\":[\"id\"]}')}",
+                      "parameters": {
+                        "col2": "true",
+                        "col4": "Failed to update the record in Salesforce. #{_dp('{\"pill_type\":\"output\",\"provider\":\"catch\",\"line\":\"5e8d60b9\",\"path\":[\"type\"]}')}. #{_dp('{\"pill_type\":\"output\",\"provider\":\"catch\",\"line\":\"5e8d60b9\",\"path\":[\"message\"]}')}",
+                        "col5": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"lookup_table\",\"line\":\"42ba6be1\",\"path\":[\"entries\",{\"path_element_type\":\"current_item\"},\"entry\",\"col5\"]}')}"
+                      }
+                    },
+                    "extended_output_schema": [
+                      {
+                        "control_type": "number",
+                        "label": "Entry ID",
+                        "name": "id",
+                        "parse_output": "integer_conversion",
+                        "type": "integer"
+                      },
+                      {
+                        "label": "Entry",
+                        "name": "entry",
+                        "properties": [
+                          {
+                            "control_type": "text",
+                            "label": "Records",
+                            "name": "col1",
+                            "type": "string",
+                            "sticky": true
+                          },
+                          {
+                            "control_type": "text",
+                            "label": "Processed?",
+                            "name": "col2",
+                            "type": "string",
+                            "sticky": true
+                          },
+                          {
+                            "control_type": "text",
+                            "label": "Status",
+                            "name": "col3",
+                            "type": "string",
+                            "sticky": true
+                          },
+                          {
+                            "control_type": "text",
+                            "label": "Message",
+                            "name": "col4",
+                            "type": "string",
+                            "sticky": true
+                          },
+                          {
+                            "control_type": "text",
+                            "label": "KeyId",
+                            "name": "col5",
+                            "type": "string",
+                            "sticky": true
+                          }
+                        ],
+                        "type": "object"
+                      }
+                    ],
+                    "extended_input_schema": [
+                      {
+                        "hint": "Fill the fields you want to update",
+                        "label": "Entry fields",
+                        "name": "parameters",
+                        "properties": [
+                          {
+                            "control_type": "text",
+                            "label": "Records",
+                            "name": "col1",
+                            "type": "string",
+                            "sticky": true,
+                            "optional": true
+                          },
+                          {
+                            "control_type": "text",
+                            "label": "Processed?",
+                            "name": "col2",
+                            "type": "string",
+                            "sticky": true,
+                            "optional": true
+                          },
+                          {
+                            "control_type": "text",
+                            "label": "Status",
+                            "name": "col3",
+                            "type": "string",
+                            "sticky": true,
+                            "optional": true
+                          },
+                          {
+                            "control_type": "text",
+                            "label": "Message",
+                            "name": "col4",
+                            "type": "string",
+                            "sticky": true,
+                            "optional": true
+                          },
+                          {
+                            "control_type": "text",
+                            "label": "KeyId",
+                            "name": "col5",
+                            "type": "string",
+                            "sticky": true,
+                            "optional": true
+                          }
+                        ],
+                        "type": "object"
+                      }
+                    ],
+                    "visible_config_fields": [
+                      "lookup_table_id",
+                      "ignore_not_found",
+                      "parameters.col2",
+                      "parameters.col4",
+                      "parameters.col5",
+                      "id",
+                      "parameters"
+                    ],
+                    "hidden_config_fields": [
+                      "parameters.col3",
+                      "parameters.col1",
+                      "parameters.col6"
+                    ],
+                    "comment": "Add Error message",
+                    "uuid": "75c12e64-8781-4b3c-87cc-cea5dc34979d",
+                    "title": null,
+                    "description": "Update <span class=\"provider\">an entry</span> in <span class=\"provider\">PROD_StripePayments_BigQuery</span> lookup table"
+                  }
+                ],
+                "uuid": "df7beb43-44c8-43e3-b8a1-26b9d34b1eb6"
+              }
+            ],
+            "uuid": "61ee7f7c-4ebd-4f41-8a93-08a79b307ca9"
+          }
+        ],
+        "source": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"lookup_table\",\"line\":\"42ba6be1\",\"path\":[\"entries\"]}')}",
+        "uuid": "3a278a2b-b6be-4f67-9a70-616af4b7e319"
+      },
+      {
+        "number": 27,
+        "provider": "logger",
+        "name": "log_message",
+        "as": "8ff3b825",
+        "keyword": "action",
+        "input": {
+          "message": "Total Records: #{_dp('{\"pill_type\":\"output\",\"provider\":\"lookup_table\",\"line\":\"42ba6be1\",\"path\":[\"entries\",{\"path_element_type\":\"size\"}]}')}, Total Batch: #{_dp('{\"pill_type\":\"output\",\"provider\":\"workato_variable\",\"line\":\"cb78cfa9\",\"path\":[\"total_batch\"]}')}, Batch Processed: #{_dp('{\"pill_type\":\"output\",\"provider\":\"workato_variable\",\"line\":\"cb78cfa9\",\"path\":[\"batch_count\"]}')}"
+        },
+        "uuid": "ef41b8b4-9901-4620-97a5-76ce6e1b9fb9",
+        "title": null,
+        "description": "Log <span class=\"provider\">message</span> to <span class=\"provider\">Job report</span>"
+      },
+      {
+        "number": 28,
+        "provider": "workato_variable",
+        "name": "declare_variable",
+        "as": "990550d5",
+        "keyword": "action",
+        "input": {
+          "variables": {
+            "schema": [
+              {
+                "name": "CurrentDate",
+                "type": "string",
+                "optional": true,
+                "label": "CurrentDate",
+                "control_type": "text"
+              }
+            ],
+            "data": {
+              "CurrentDate": "=today"
+            }
+          }
+        },
+        "extended_output_schema": [
+          {
+            "control_type": "text",
+            "label": "CurrentDate",
+            "name": "CurrentDate",
+            "optional": true,
+            "type": "string"
+          }
+        ],
+        "extended_input_schema": [
+          {
+            "add_field_label": "Add a variable",
+            "control_type": "form-schema-builder",
+            "empty_schema_title": "Add variables by giving them a name, type and default value",
+            "exclude_fields": [
+              "hint"
+            ],
+            "item_label": "variable",
+            "label": "Variables",
+            "mark_as_required": true,
+            "name": "variables",
+            "ngIf": "!input.name",
+            "optional": true,
+            "properties": [
+              {
+                "control_type": "text",
+                "label": "Schema",
+                "extends_schema": true,
+                "broadcast_change_event": true,
+                "type": "string",
+                "name": "schema"
+              },
+              {
+                "properties": [
+                  {
+                    "control_type": "text",
+                    "label": "CurrentDate",
+                    "name": "CurrentDate",
+                    "type": "string",
+                    "optional": true,
+                    "hint": "Defaults to nil if not supplied.",
+                    "sticky": true
+                  }
+                ],
+                "label": "Data",
+                "type": "object",
+                "name": "data"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "visible_config_fields": [
+          "variables.data.CurrentDate"
+        ],
+        "uuid": "f4eeab4f-c6cb-4b2a-b826-3af486ab86f3",
+        "title": "  Create variable CurrentDate",
+        "description": "Create variable <span class=\"provider\">CurrentDate</span>"
+      },
+      {
+        "number": 29,
+        "keyword": "if",
+        "input": {
+          "type": "compound",
+          "operand": "and",
+          "conditions": [
+            {
+              "operand": "greater_than",
+              "lhs": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"workato_variable\",\"line\":\"53380a0f\",\"path\":[\"list_items\",{\"path_element_type\":\"size\"}]}')}",
+              "rhs": "0",
+              "uuid": "condition-862bb944-0658-458b-a9f2-88ed951b1c7c"
+            }
+          ]
+        },
+        "block": [
+          {
+            "number": 30,
+            "provider": "csv_parser",
+            "name": "create_csv_lines",
+            "as": "a5271c0e",
+            "keyword": "action",
+            "toggleCfg": {
+              "create_header_line": true,
+              "force_quotes": true
+            },
+            "input": {
+              "create_header_line": "true",
+              "column_separator": ",",
+              "force_quotes": "false",
+              "column_labels": "key_id\nerror",
+              "lines": {
+                "____source": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"workato_variable\",\"line\":\"53380a0f\",\"path\":[\"list_items\"]}')}",
+                "column_0": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"workato_variable\",\"line\":\"53380a0f\",\"path\":[\"list_items\",{\"path_element_type\":\"current_item\"},\"key_id\"]}')}",
+                "column_1": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"workato_variable\",\"line\":\"53380a0f\",\"path\":[\"list_items\",{\"path_element_type\":\"current_item\"},\"error\"]}')}"
+              }
+            },
+            "extended_input_schema": [
+              {
+                "hint": "Provide field mappings for the CSV data below.",
+                "label": "CSV data lines",
+                "name": "lines",
+                "of": "object",
+                "properties": [
+                  {
+                    "control_type": "text",
+                    "label": "key_id",
+                    "optional": true,
+                    "sticky": true,
+                    "type": "string",
+                    "name": "column_0"
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "error",
+                    "optional": true,
+                    "sticky": true,
+                    "type": "string",
+                    "name": "column_1"
+                  }
+                ],
+                "type": "array"
+              }
+            ],
+            "comment": "Create csv file for the Failed records",
+            "uuid": "8289ff88-b6e7-4830-ad02-64c9c589bd6a",
+            "title": null,
+            "description": null
+          },
+          {
+            "number": 31,
+            "keyword": "if",
+            "input": {
+              "type": "compound",
+              "operand": "and",
+              "conditions": [
+                {
+                  "operand": "is_true",
+                  "lhs": "#{_dp('{\"pill_type\":\"account_property\",\"property_name\":\"EmailDeliverability\"}')}",
+                  "rhs": "",
+                  "uuid": "condition-586bf6ee-4b43-47d5-a442-eecd33600105"
+                }
+              ]
+            },
+            "block": [
+              {
+                "number": 32,
+                "provider": "email",
+                "name": "send_mail",
+                "as": "3863fc66",
+                "keyword": "action",
+                "input": {
+                  "email_type": "html",
+                  "to": "#{_dp('{\"pill_type\":\"account_property\",\"property_name\":\"AdminEmailIDs\"}')}",
+                  "subject": "Labster Automation: Failed to fetch stripe payments from BigQuery",
+                  "body": "<p>Hello Team,</p>\n<p>Please check the attached file for the records that was failed to sync from BigQuery to Salesforce on #{_dp('{\"pill_type\":\"output\",\"provider\":\"workato_variable\",\"line\":\"990550d5\",\"path\":[\"CurrentDate\"]}')}.</p>\n<br>\n<p>Total Records: #{_dp('{\"pill_type\":\"output\",\"provider\":\"lookup_table\",\"line\":\"42ba6be1\",\"path\":[\"entries\",{\"path_element_type\":\"size\"}]}')}</p>\n<p>Batch Processed: #{_dp('{\"pill_type\":\"output\",\"provider\":\"workato_variable\",\"line\":\"cb78cfa9\",\"path\":[\"batch_count\"]}')}</p>\n<p>Success: #{_dp('{\"pill_type\":\"output\",\"provider\":\"workato_variable\",\"line\":\"cb78cfa9\",\"path\":[\"success_count\"]}')}</p>\n<p>Failed: #{_dp('{\"pill_type\":\"output\",\"provider\":\"workato_variable\",\"line\":\"53380a0f\",\"path\":[\"list_items\",{\"path_element_type\":\"size\"}]}')}</p>\n<p>Recipe ID: #{_dp('{\"pill_type\":\"job_context\",\"path\":[\"recipe_id\"]}')}</p>\n<p>Job ID: #{_dp('{\"pill_type\":\"job_context\",\"path\":[\"job_id\"]}')}</p>\n<br><br>\n<p>Please contact with System Administrator</p>\n<br>\n<p>Labster Automation Team</p>\n",
+                  "attachments": {
+                    "file_binary_content": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"csv_parser\",\"line\":\"a5271c0e\",\"path\":[\"csv_lines\"]}')}",
+                    "file_name": "Failed_BQ_Stripe_Records_#{_dp('{\"pill_type\":\"output\",\"provider\":\"workato_variable\",\"line\":\"990550d5\",\"path\":[\"CurrentDate\"]}')}.csv"
+                  }
+                },
+                "visible_config_fields": [
+                  "to",
+                  "subject",
+                  "email_type",
+                  "body",
+                  "attachments.file_name",
+                  "attachments.file_binary_content"
+                ],
+                "comment": "Sand failed records to admin",
+                "uuid": "97140dfe-f5c1-45c4-b5c9-a74e76683361",
+                "skip": false,
+                "title": null,
+                "description": null
+              }
+            ],
+            "uuid": "a1ff1ec8-87fe-4a49-8468-3934f037f805"
+          }
+        ],
+        "comment": "FailedRecords list size > 0",
+        "uuid": "750b6d25-b052-463c-a795-535e8e5eb0ed"
+      },
+      {
+        "number": 33,
+        "keyword": "stop",
+        "input": {
+          "stop_with_error": "false"
+        },
+        "uuid": "cac79db4-f561-4d46-9e75-f135b1b10af0"
+      }
+    ],
+    "comment": "Callable: Sync stripe payment data from BQ to SF",
+    "job_report_schema": [
+      {
+        "name": "custom_column_0",
+        "label": "Description"
+      },
+      {
+        "name": "custom_column_1",
+        "label": "Execution"
+      }
+    ],
+    "job_report_config": {
+      "custom_column_0": "Total Records: #{_('data.lookup_table.42ba6be1.entries.first.____Size', 'list_meta', '____Size', 'data.lookup_table.42ba6be1.entries')}, Batch Processed:  #{_('data.workato_variable.cb78cfa9.batch_count')}, Success: #{_('data.workato_variable.cb78cfa9.success_count')}, Failed: #{_('data.workato_variable.53380a0f.list_items.first.____Size', 'list_meta', '____Size', 'data.workato_variable.53380a0f.list_items')}",
+      "custom_column_1": "JobId: #{_('data.workato.job_context.job_id')}, Parent JobId:#{_('data.workato.job_context.calling_job_id')}, Parent RecipeId:#{_('data.workato.job_context.calling_recipe_id')}"
+    },
+    "uuid": "81f47af4-6599-4a83-8e4e-3ac1ff7d2ada",
+    "format_version": 2,
+    "title": null,
+    "description": null
+  }
+}
